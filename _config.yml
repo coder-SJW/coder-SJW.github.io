@@ -18,7 +18,7 @@ symbols_count_time:
   total_time: false #是否统计总阅读时长
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: http://example.com
+url: http://tosjw.cn
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
