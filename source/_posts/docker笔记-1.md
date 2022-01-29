@@ -4,6 +4,7 @@ date: 2021-12-31 01:46:49
 tags: 
  - docker
 categories: Docker
+cover: https://i.loli.net/2021/02/22/pnbmUDYPf4tvHjh.png
 ---
 
 # 一、Docker基本组成
