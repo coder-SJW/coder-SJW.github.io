@@ -3,7 +3,7 @@ title: java Streams操作
 date: 2022-02-14 17:12:53
 tags:
   - Streams流
-categories: java8
+categories: java
 cover: https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.lxiaoyu.com%2Fwp-content%2Fuploads%2F2021%2F06%2Ffrc-606e933cbe96a03bae726a3f30302294.png&refer=http%3A%2F%2Fimg.lxiaoyu.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1647422545&t=c2155396b3d2896e9de36a2f7841eea4
 top_img: https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.lxiaoyu.com%2Fwp-content%2Fuploads%2F2021%2F06%2Ffrc-606e933cbe96a03bae726a3f30302294.png&refer=http%3A%2F%2Fimg.lxiaoyu.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1647422545&t=c2155396b3d2896e9de36a2f7841eea4
 ---
