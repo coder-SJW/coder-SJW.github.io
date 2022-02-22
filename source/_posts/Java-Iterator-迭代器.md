@@ -4,6 +4,111 @@ date: 2022-02-16 09:08:31
 tags:
   - 迭代器
 categories: java
-cover: https:https://image.baidu.com/search/detail?ct=503316480&z=0&ipn=d&word=Iterator%20java&step_word=&hs=0&pn=188&spn=0&di=45320&pi=0&rn=1&tn=baiduimagedetail&is=0%2C0&istype=2&ie=utf-8&oe=utf-8&in=&cl=2&lm=-1&st=-1&cs=1760750448%2C1884404611&os=565137913%2C3536742777&simid=1760750448%2C1884404611&adpicid=0&lpn=0&ln=427&fr=&fmq=1644973883318_R&fm=result&ic=&s=undefined&hd=&latest=&copyright=&se=&sme=&tab=0&width=&height=&face=undefined&ist=&jit=&cg=&bdtype=0&oriquery=&objurl=https%3A%2F%2Fgimg2.baidu.com%2Fimage_search%2Fsrc%3Dhttp%3A%2F%2Fimg-blog.csdnimg.cn%2F20200718145102930.png%3Fx-oss-process%3Dimage%2Fwatermark%2Ctype_ZmFuZ3poZW5naGVpdGk%2Cshadow_10%2Ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfbHV3ZWk%3D%2Csize_16%2Ccolor_FFFFFF%2Ct_70%26refer%3Dhttp%3A%2F%2Fimg-blog.csdnimg.cn%26app%3D2002%26size%3Df9999%2C10000%26q%3Da80%26n%3D0%26g%3D0n%26fmt%3Djpeg%3Fsec%3D1647566013%26t%3D3233b0cfc62e60501040bfcbdbaac077&fromurl=ippr_z2C%24qAzdH3FAzdH3Fooo_z%26e3Bvf1g_z%26e3BgjpAzdH3Fpw2fAzdH3FOpDwh2cfNzMyNzEpY4xeZoOaOaOOaOaO_z%26e3Bip4s&gsm=bd&rpstart=0&rpnum=0&islist=&querylist=&nojc=undefined&dyTabStr=MCw2LDIsMywxLDUsNCw3LDgsOQ%3D%3D
-top_img: https://image.baidu.com/search/detail?ct=503316480&z=0&ipn=d&word=Iterator%20java&step_word=&hs=0&pn=188&spn=0&di=45320&pi=0&rn=1&tn=baiduimagedetail&is=0%2C0&istype=2&ie=utf-8&oe=utf-8&in=&cl=2&lm=-1&st=-1&cs=1760750448%2C1884404611&os=565137913%2C3536742777&simid=1760750448%2C1884404611&adpicid=0&lpn=0&ln=427&fr=&fmq=1644973883318_R&fm=result&ic=&s=undefined&hd=&latest=&copyright=&se=&sme=&tab=0&width=&height=&face=undefined&ist=&jit=&cg=&bdtype=0&oriquery=&objurl=https%3A%2F%2Fgimg2.baidu.com%2Fimage_search%2Fsrc%3Dhttp%3A%2F%2Fimg-blog.csdnimg.cn%2F20200718145102930.png%3Fx-oss-process%3Dimage%2Fwatermark%2Ctype_ZmFuZ3poZW5naGVpdGk%2Cshadow_10%2Ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfbHV3ZWk%3D%2Csize_16%2Ccolor_FFFFFF%2Ct_70%26refer%3Dhttp%3A%2F%2Fimg-blog.csdnimg.cn%26app%3D2002%26size%3Df9999%2C10000%26q%3Da80%26n%3D0%26g%3D0n%26fmt%3Djpeg%3Fsec%3D1647566013%26t%3D3233b0cfc62e60501040bfcbdbaac077&fromurl=ippr_z2C%24qAzdH3FAzdH3Fooo_z%26e3Bvf1g_z%26e3BgjpAzdH3Fpw2fAzdH3FOpDwh2cfNzMyNzEpY4xeZoOaOaOOaOaO_z%26e3Bip4s&gsm=bd&rpstart=0&rpnum=0&islist=&querylist=&nojc=undefined&dyTabStr=MCw2LDIsMywxLDUsNCw3LDgsOQ%3D%3D
+cover: https://gitee.com/coder-SJW/blogimg/raw/master/img/image-20220222134730562.png
+top_img: https://gitee.com/coder-SJW/blogimg/raw/master/img/image-20220222134730562.png
 ---
+
+
+
+
+
+
+
+结构图:
+
+![image-20220222134730562](https://gitee.com/coder-SJW/blogimg/raw/master/img/image-20220222134730562.png)
+
+# 1、简述java迭代器
+
+​		Iterator迭代器的定义：迭代器（Iterator）模式，又叫做游标（Cursor）模式。GOF给出的定义是，提供一种方法访问一个容器container对象中各个元素，**而又不需暴露该对象的内部细节**。迭代器通常被称为“轻量级”对象，因为创建它的代价小。
+
+- 它用于逐个遍历集合对象元素
+- 它适用于所有Collection类，如上结构图所示
+- 它支持read和**remove**操作
+
+> 注意：对collection类遍历进行remove时不能使用for或者foreach，只能使用迭代器去操作，[否则抛同步异常](https://jingyan.baidu.com/article/d621e8da21e47e2865913fc8.html)
+
+# 2、java Iterator源码
+
+>  类图
+
+![image-20220222140613248](https://gitee.com/coder-SJW/blogimg/raw/master/img/image-20220222140613248.png)
+
+> 方法
+
+```java
+public interface Iterator<E> {
+    /**
+     * 检查集合中是否还有元素
+     */
+    boolean hasNext();
+
+    /**
+     * 返回迭代的下一个元素
+     * @throws NoSuchElementException 如果没有可迭代的元素将抛出异常
+     */
+    E next();
+
+    /**
+     *将迭代器新返回的元素删除
+     */
+    default void remove() {
+        throw new UnsupportedOperationException("remove");
+    }
+
+    /**
+     * 对每个剩余元素执行给定操作，直到所有元素都被处理或操作抛出异常。
+     * 如果指定了该顺序，则操作按迭代顺序执行
+     * @since 1.8
+     */
+    default void forEachRemaining(Consumer<? super E> action) {
+        Objects.requireNonNull(action);
+        while (hasNext())
+            action.accept(next());
+    }
+}
+```
+
+> 使用方法
+
+```java
+public class IteratorDemo {
+    public static void main(String[] args) {
+        List<String> list = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
+            list.add("item" + i);
+        }
+        //获取迭代器
+        Iterator<String> listIterator = list.iterator();
+        //判断是否还有元素
+        while (listIterator.hasNext()) {
+            System.err.println(listIterator.next());
+            //对剩下的元素执行指定操作
+            listIterator.forEachRemaining((String consumer) -> {
+                System.err.println(consumer.concat("-test"));
+            });
+        }
+
+    }
+}
+//结果
+item0
+item1-test
+item2-test
+item3-test
+item4-test
+```
+
+# 3、Iterator总结
+
+Java中的Iterator功能比较简单，并且只能**单向移动**：
+
+(1) 方法iterator()将返回一个Iterator。首次调用next()方法时，它将返回第一个元素
+
+(2) next() 返回下一个元素
+
+(3) hasNext() 检查集合中是否还有元素
+
+(4) remove() 将迭代器新返回的元素删除
+
+(5) forEachRemaining() 对每个剩余的元素执行指定的操作
