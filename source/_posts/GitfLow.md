@@ -8,11 +8,11 @@ cover: https://gitee.com/coder-SJW/blogimg/raw/master/img/image-2022022211351659
 top_img: https://gitee.com/coder-SJW/blogimg/raw/master/img/image-20220222113516599.png
 ---
 
-# 一、开始
+# 一、什么是gitFlow工作流
 
 > Gitflow 实际上只是 Git 工作流程的抽象概念。这意味着它规定了要设置什么样的分支以及如何将它们合并在一起。
 
->  git流程图：
+>  gitFlow流程图：
 
 ![image-20220222113516599](https://gitee.com/coder-SJW/blogimg/raw/master/img/image-20220222113516599.png)
 
@@ -267,8 +267,32 @@ git branch -d issue-#001
 
 
 
+# 四、Git flow的问题
+
+>  Git Flow 的问题：
+
+​		 hotfix 和 release  分支引入的复杂性。这些分支对某些组织来说可能是一个好主意，但对绝大多数组织来说都是多余的。如今，大多数组织都在**实践持续交付**，这意味着可以部署您的默认分支。持续交付消除了对修补程序和发布分支的需求，包括它们引入的所有仪式。这个仪式的一个例子是发布分支的合并。尽管确实存在专门的工具来解决这个问题，但它们需要文档并增加了复杂性。开发人员经常会犯错误，例如仅将更改合并到主分支而不是开发分支。这些错误的原因是 Git 流程对于大多数用例来说太复杂了。例如，许多项目发布但不需要做修补程序。
+
+------
+
+
+
+> 对于Git Flow的问题，GitHub提供了一个更简单的替代方案：GitHub Flow
+
+ 		[GitHub Flow](https://docs.github.com/en/get-started/quickstart/github-flow) 只有**功能分支(feature)和主分支(master)**：  这个流程简洁明了，许多组织都成功地采用了它。 Atlassian  推荐了一个类似的策略，尽管他们重新定义了特性分支。将所有内容合并到主分支并频繁部署意味着您可以最大限度地减少未发布代码的数量。这种方法符合精益和持续交付的最佳实践。然而，**这个流程仍然留下了很多关于部署、环境、发布和与问题集成的问题**。
+
+
+
+> 对于GitHub Flow的问题，GitLab提供了GitLab Flow
+
+​		
+
 # 四、相关文档
 
 [A successful Git branching model](https://nvie.com/posts/a-successful-git-branching-model/ )
 
 [Gitflow Workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow) 
+
+[GitHub Flow](https://docs.github.com/en/get-started/quickstart/github-flow)
+
+[GitLab Flow](https://docs.gitlab.com/ee/topics/gitlab_flow.html)
