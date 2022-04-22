@@ -216,7 +216,7 @@ if (userMap.isEmpty()) {
 }
 ```
 
-## 4、Optional判空
+## 4、Optional判null
 
 [java8新特性 Optional](https://www.runoob.com/java/java8-optional-class.html)
 
@@ -235,16 +235,25 @@ public List<CatalogueTreeNode> getChild(String pid) {
 }
 ```
 
-## 5、集合检查 Null 和 Length
+> Optional.ofNullable(node)
 
-> 无论如何，只要你有一个集合、数组等，请确保它存在，并且不为空。
+![image-20220225112903433](C:\Users\28552\AppData\Roaming\Typora\typora-user-images\image-20220225112903433.png)
 
-```java
-// Bad：null指针异常
-if (array.length > 0) { ... }
-// Good
-if (array != null && array.length > 0) { ... }
-```
+## 5、(推荐)CollectionUtils判null、空
+
+> CollectionUtils属于org.apache.commons
+
+![image-20220225113354421](https://gitee.com/coder-SJW/blogimg/raw/master/img/image-20220225113354421.png)
+
+> CollectionUtils.isEmpty()方法源码
+
+![image-20220225113252878](https://gitee.com/coder-SJW/blogimg/raw/master/img/image-20220225113252878.png)
+
+> 如果直接使用list.isEmpty(),list为null就会抛异常；ColletionsUtils里面也判断了isEmpty，但为什么他没报错呢？
+
+我们都知道&&和||都是短路模式，&&必须两个都为正确(true)，才会返回正确，只要第一个为false，则下面的不执行，直接返回错误。而||则是只要第一个返回true，则后面的就不再执行。
+
+所以：他是在先判断isEmpty之前判断的是否为null，并且用的短路模式，||当前面的为正确(true)，则后面的isEmpty则不会运行，直接返回正确，从而业务能正常运行下去，**不会报空异常**。
 
 # 五、框架
 

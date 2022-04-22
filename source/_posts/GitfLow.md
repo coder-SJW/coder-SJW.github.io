@@ -283,11 +283,41 @@ git branch -d issue-#001
 
 
 
-> 对于GitHub Flow的问题，GitLab提供了GitLab Flow
+> 对于GitHub Flow的问题，GitLab提供了GitLab Flow：见五
 
-​		
+# 五、GitLab Flow
 
-# 四、相关文档
+​		GitHub 工作流隐含一个假定：每次合并 feature，主分支的代码是立即发布的。然而，实际中常常不能满足这个假定，例如：你无法控制代码发布时间，例如 App 发布要等审核通过。再例如：发布时间窗口限制，合并分支的时候也许并不在发布时间窗口。
+
+## 1、GitLab 工作流中的生产分支（Production branch)
+
+ GitLab 推荐用生产分支来解决上述GitHub Flow问题：
+
+![image-20220224091518158](https://gitee.com/coder-SJW/blogimg/raw/master/img/image-20220224091518158.png)
+
+
+
+
+
+​		Gitlab flow 的最大原则叫做**"上游优先"**（upsteam first），即只存在一个主分支master，它是所有其他分支的"上游"。只有上游分支采纳的代码变化，才能应用到其他分支。
+
+> 对于"持续发布"的项目，它建议在master分支以外，再建立不同的环境分支。比如，
+
+- "开发环境"的分支是master。
+- "预发环境"的分支是pre-production。
+- "生产环境"的分支是production。
+
+​		开发分支是预发分支的"上游"，预发分支又是生产分支的"上游"。代码的变化，必须由"上游"向"下游"发展。比如，**生产环境出现了bug，这时就要新建一个功能分支，先把它合并到master**，确认没有问题，再cherry-pick到pre-production，这一步也没有问题，才进入production。只有紧急情况，才允许跳过上游，直接合并到下游分支。
+
+![image-20220224091719794](https://gitee.com/coder-SJW/blogimg/raw/master/img/image-20220224091719794.png)
+
+## 2、版本发布
+
+​		对于"版本发布"的项目，建议的做法是每一个稳定版本，都要从master分支拉出一个分支，比如2-3-stable、2-4-stable等等。
+
+![image-20220224091906626](https://gitee.com/coder-SJW/blogimg/raw/master/img/image-20220224091906626.png)
+
+# 六、相关文档
 
 [A successful Git branching model](https://nvie.com/posts/a-successful-git-branching-model/ )
 
