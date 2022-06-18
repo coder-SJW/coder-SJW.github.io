@@ -1,0 +1,367 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>GitfLow | coder-S</title><meta name="keywords" content="gitFlow"><meta name="author" content="coder-S"><meta name="copyright" content="coder-S"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="一、什么是gitFlow工作流 Gitflow 实际上只是 Git 工作流程的抽象概念。这意味着它规定了要设置什么样的分支以及如何将它们合并在一起。    gitFlow流程图：   我们将在下面讨论分支的目的。 git-flow 工具集是一个具有安装过程的实际命令行工具。 git-flow 的安装过程很简单。 git-flow  的软件包可在多个操作系统上使用。  在 OSX 系统上，您可以执行">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GitfLow">
+<meta property="og:url" content="http://tosjw.cn/2022/02/16/GitfLow/index.html">
+<meta property="og:site_name" content="coder-S">
+<meta property="og:description" content="一、什么是gitFlow工作流 Gitflow 实际上只是 Git 工作流程的抽象概念。这意味着它规定了要设置什么样的分支以及如何将它们合并在一起。    gitFlow流程图：   我们将在下面讨论分支的目的。 git-flow 工具集是一个具有安装过程的实际命令行工具。 git-flow 的安装过程很简单。 git-flow  的软件包可在多个操作系统上使用。  在 OSX 系统上，您可以执行">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/coder-SJW/blogimg/raw/master/img/image-20220222113516599.png">
+<meta property="article:published_time" content="2022-02-16T02:31:01.000Z">
+<meta property="article:modified_time" content="2022-06-18T03:07:43.248Z">
+<meta property="article:author" content="coder-S">
+<meta property="article:tag" content="gitFlow">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/coder-SJW/blogimg/raw/master/img/image-20220222113516599.png"><link rel="shortcut icon" href="https://sjw-storage.oss-cn-hangzhou.aliyuncs.com/img/wallhaven-d5xpj3.png"><link rel="canonical" href="http://tosjw.cn/2022/02/16/GitfLow/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script async="async" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><script>(adsbygoogle = window.adsbygoogle || []).push({
+  google_ad_client: 'ca-pub-9717726275141216',
+  enable_page_level_ads: 'true'
+});</script><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?0ca02f4c8276e45dafc84267bc683272";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'GitfLow',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-06-18 11:07:43'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="coder-S" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://sjw-storage.oss-cn-hangzhou.aliyuncs.com/img/wallhaven-y8lqo7.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">9</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">9</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://gitee.com/coder-SJW/blogimg/raw/master/img/image-20220222113516599.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">coder-S</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">GitfLow</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-02-16T02:31:01.000Z" title="发表于 2022-02-16 10:31:01">2022-02-16</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-06-18T03:07:43.248Z" title="更新于 2022-06-18 11:07:43">2022-06-18</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/git/">git</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">3.2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>10分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="GitfLow"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="一、什么是gitFlow工作流"><a href="#一、什么是gitFlow工作流" class="headerlink" title="一、什么是gitFlow工作流"></a>一、什么是gitFlow工作流</h1><blockquote>
+<p>Gitflow 实际上只是 Git 工作流程的抽象概念。这意味着它规定了要设置什么样的分支以及如何将它们合并在一起。</p>
+</blockquote>
+<blockquote>
+<p> gitFlow流程图：</p>
+</blockquote>
+<p><img src="https://sjw-storage.oss-cn-hangzhou.aliyuncs.com/img/64ef2ae7ec855b09cfb851d11ed32f9d.png" alt="img"></p>
+<p>我们将在下面讨论分支的目的。 git-flow 工具集是一个具有安装过程的实际命令行工具。 git-flow 的安装过程很简单。 git-flow  的软件包可在多个操作系统上使用。</p>
+<ul>
+<li>在 OSX 系统上，您可以执行 brew install git-flow。</li>
+<li>在 Windows  上，您需要下载并安装 git-flow。安装 git-flow 后，您可以通过执行 git flow init 在项目中使用它.Git-flow 是一个围绕 Git 的包装器。 git flow init 命令是默认 git init  命令的扩展，除了为您创建分支外，不会更改存储库中的任何内容 #</li>
+</ul>
+<h1 id="二、操作"><a href="#二、操作" class="headerlink" title="二、操作"></a>二、操作</h1><h2 id="1-（Feature-branches）功能分支"><a href="#1-（Feature-branches）功能分支" class="headerlink" title="1.（Feature branches）功能分支"></a>1.（Feature branches）功能分支</h2><p>​        每个新功能都应该驻留在自己的分支中，可以将其推送到中央存储库以进行备份/协作。但是，功能分支不是从主分支分支，而是使用开发作为其父分支。当一个功能完成后，它会被合并回develop。功能不应该直接与 main 交互。（如下图）</p>
+<p><img src="https://sjw-storage.oss-cn-hangzhou.aliyuncs.com/img/2531f0cc30b7796b46f0c4e1c44cd166.png" alt="img"></p>
+<h3 id="1-1创建功能分支"><a href="#1-1创建功能分支" class="headerlink" title="1.1创建功能分支"></a>1.1创建功能分支</h3><blockquote>
+<p>不使用git-flow进行创建</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkout develop #切换到develop分支</span><br><span class="line">git checkout -b feature_branch #在develop分支上创建功能分支并切换</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>使用git-flow进行创建</p>
+</blockquote>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git flow feature start feature_branch</span><br></pre></td></tr></table></figure>
+
+<p>继续你的工作并像往常一样使用 Git。</p>
+<h3 id="1-2完成功能分支"><a href="#1-2完成功能分支" class="headerlink" title="1.2完成功能分支"></a>1.2完成功能分支</h3><blockquote>
+<p>不使用git-flow</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkout develop #切换到develop分支</span><br><span class="line">git merge feature_branch #合并功能分支</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>使用git-flow</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git flow feature finish feature_branch</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="2-（Release-branches）发布分支"><a href="#2-（Release-branches）发布分支" class="headerlink" title="2.（Release branches）发布分支"></a>2.（Release branches）发布分支</h2><p><img src="https://sjw-storage.oss-cn-hangzhou.aliyuncs.com/img/4e0529e08f5a4f954b5ed8cccf63d960.png" alt="image-20220216112954357"></p>
+<p>​            一旦 develop 获得了足够的发布功能（或预定的发布日期临近），您就可以从 develop  分支分支发布。创建此分支会启动下一个发布周期，因此在此之后不能添加新功能——只有错误修复、文档生成和其他面向发布的任务应该在此分支中进行。一旦准备好发布，发布分支就会合并到 main 中并用版本号标记。此外，它应该重新合并到开发中，这可能自发布启动以来已经取得了进展。  使用专门的分支来准备发布，可以让一个团队完善当前版本，而另一个团队继续为下一个版本开发功能。它还创建了明确定义的开发阶段（例如，很容易说“本周我们正在为版本 4.0 做准备”，并在存储库的结构中实际看到它）。  制作发布分支是另一个简单的分支操作。与特性分支一样，发布分支也是基于开发分支的。可以使用以下方法创建新的发布分支。</p>
+<blockquote>
+<p>不使用git-flow创建发布分支</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkout develop #切换到develop分支</span><br><span class="line">git checkout -b release/0.1.0 # 创建发布分支</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>使用git-flow创建发布分支</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git flow release start 0.1.0</span><br><span class="line">Switched to a new branch &#x27;release/0.1.0&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>​        一旦发布分支准备好发布，它将被合并到主分支和开发分支中，<strong>然后发布分支将被删除</strong>。<strong>重新合并到开发中很重要</strong>，因为可能已将关键更新添加到发布分支中，并且需要新功能可以访问它们。</p>
+<blockquote>
+<p>不使用git-flow合并发布分支到主分支</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkout main #切换到主分支</span><br><span class="line">git merge release/0.1.0 #合并发布分支</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>使用git-flow合并发布分支到主分支</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git flow release finish &#x27;0.1.0&#x27;</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-（Hotfix-branches）修复分支"><a href="#3-（Hotfix-branches）修复分支" class="headerlink" title="3.（Hotfix branches）修复分支"></a>3.（Hotfix branches）修复分支</h2><p><img src="https://sjw-storage.oss-cn-hangzhou.aliyuncs.com/img/e3fce349f1969f18fef2850b6fbfb33c.png" alt="image-20220222111836746"></p>
+<p>​        这个分支用来修复主线master的BUG。修复分支很像发布分支和功能分支，只是它们基于main分支而不是develop分支。这是唯一应该直接从 main  分叉的分支。修复完成后，应将其合并到 main分支 和 develop分支（或当前发布分支）中，并且 main 分支应使用更新的版本号进行标记。拥有专门的错误修复开发线可以让您的团队解决问题，而无需中断工作流程的其余部分或等待下一个发布周期。您可以将修复分支视为直接与 main分支  一起使用的临时发布分支。</p>
+<p>可以使用以下方法创建修复分支：</p>
+<blockquote>
+<p>不使用git-flow创建</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkout main</span><br><span class="line">git checkout -b hotfix_branch</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>使用git-flow创建</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git flow hotfix start hotfix_branch</span><br></pre></td></tr></table></figure>
+
+<p>一个修复分支合并到主分支和开发分支中，类似于完成一个发布分支，如下。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git checkout main</span><br><span class="line">git merge hotfix_branch</span><br><span class="line">git checkout develop</span><br><span class="line">git merge hotfix_branch</span><br><span class="line">git branch -D hotfix_branch</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git flow hotfix finish hotfix_branch</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="三、例子"><a href="#三、例子" class="headerlink" title="三、例子"></a>三、例子</h1><p><img src="https://sjw-storage.oss-cn-hangzhou.aliyuncs.com/img/54e38d1c37e1cc043a05b95ad1bfa5ba.png" alt="image-20220222172122699"></p>
+<p>下面的例子将演示Gitflow流程如何被用来管理一次产品发布。假设你已经创建好了一个中央仓库。</p>
+<h2 id="1、创建develop分支"><a href="#1、创建develop分支" class="headerlink" title="1、创建develop分支"></a>1、创建develop分支</h2><p><img src="https://sjw-storage.oss-cn-hangzhou.aliyuncs.com/img/361bedb826c65f5f2acff56516963174.png" alt="image-20220222173428594"></p>
+<blockquote>
+<p>第一步：是给默认的master配备一个develop分支。一种简单的做法是：让一个开发者在本地建立一个空的develop分支，然后把它推送到服务器。</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git branch develop</span><br><span class="line">git push -u origin develop</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>第二步：develop分支将包含项目的所有历史，而master会是一个缩减版本。现在，其他开发者应该克隆（clone）中央仓库，并且为develop创建一个追踪分支。</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git clone &lt;url&gt;</span><br><span class="line">git checkout -b develop origin/develop</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="2、张三和罗翔开始开发新功能"><a href="#2、张三和罗翔开始开发新功能" class="headerlink" title="2、张三和罗翔开始开发新功能"></a>2、张三和罗翔开始开发新功能</h2><p><img src="https://sjw-storage.oss-cn-hangzhou.aliyuncs.com/img/83e9891841cdfffbcb03a08e48c1560f.png" alt="image-20220222172607442"></p>
+<blockquote>
+<p>第一步：他们俩各自建立了自己的分支。<strong>注意</strong>–&gt;他们在创建分支时，父分支不能选择master，而要选择develop。</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b some-feature develop</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p> 第二步：他们俩都在自己的功能开发分支上开展工作。</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git status</span><br><span class="line">git add &lt;some-file&gt;</span><br><span class="line">git commit </span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="3、张三完成了新功能的开发"><a href="#3、张三完成了新功能的开发" class="headerlink" title="3、张三完成了新功能的开发"></a>3、张三完成了新功能的开发</h2><p><img src="https://sjw-storage.oss-cn-hangzhou.aliyuncs.com/img/9b7ce14f8cf12418ba3b62a839a22696.png" alt="image-20220222173116175"></p>
+<p>​        在提交过几次代码之后，张三觉得她的功能做完了。如果她所在的团队使用“PR”，此刻她可以提出一个将她所完成的功能合并入develop分支的请求。要不然，她可以自行将她的代码合并入本地的develop分支，然后再推送到中央仓库，像这样：</p>
+<blockquote>
+<p>第一条命令确保了本地的develop分支拥有最新的代码——这一步必须在将功能代码合并之前做！<strong>注意</strong>，新开发的功能代码永远不能直接合并入master。必要时，还需要解决在代码合并过程中的冲突。</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git pull origin develop</span><br><span class="line">git checkout develop</span><br><span class="line">git merge some-feature</span><br><span class="line">git push</span><br><span class="line">git branch -d some-feature</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="4、张三开始预备一次发布"><a href="#4、张三开始预备一次发布" class="headerlink" title="4、张三开始预备一次发布"></a>4、张三开始预备一次发布</h2><p><img src="https://sjw-storage.oss-cn-hangzhou.aliyuncs.com/img/83faa05bb1371f6da639e4d47cf35f0d.png" alt="image-20220222173714714"></p>
+<p>​        尽管罗翔还在忙着开发他的功能，小马却可以开始准备这个项目的第一次正式发布了。类似于功能开发，她使用了一个新的分支来做产品发布的准备工作。在这一步，发布的版本号也最初确定下来。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b release-0.1 develop</span><br></pre></td></tr></table></figure>
+
+<p>​        <strong>这个分支专门用于发布前的准备</strong>，包括一些清理工作、全面的测试、文档的更新以及任何其他的准备工作。它与用于功能开发的分支相似，不同之处在于它是专为产品发布服务的。</p>
+<p>​        一旦张三创建了这个分支并把它推向中央仓库，这次产品发布包含的功能也就固定下来了。任何还处于开发状态的功能只能等待下一个发布周期。</p>
+<h2 id="5、张三完成了发布"><a href="#5、张三完成了发布" class="headerlink" title="5、张三完成了发布"></a>5、张三完成了发布</h2><p><img src="https://sjw-storage.oss-cn-hangzhou.aliyuncs.com/img/19af77188cd5edf372f4cf0313e00557.png" alt="image-20220222174154538"></p>
+<p>​        一切准备就绪之后，张三就要把发布分支合并入<strong>master</strong>和<strong>develop</strong>分支，然后<strong>再将发布分支删除</strong>。<strong>注意</strong>，往develop分支的合并是很重要的，因为开发人员可能在发布分支上修复了一些关键的问题，而这些修复对于正在开发中的新功能是有益的。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">git checkout master</span><br><span class="line">git merge release-0.1</span><br><span class="line">git push</span><br><span class="line">git checkout develop</span><br><span class="line">git merge release-0.1</span><br><span class="line">git push</span><br><span class="line">git branch -d release-0.1</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>发布分支扮演的角色是功能开发（develop）与官方发布（master）之间的一个<strong>缓冲</strong>。无论什么时候你把一些东西合并入master，你都应该随即打上合适的标签。</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git tag -a 0.1 -m&quot;Initial public release&quot; master</span><br><span class="line">git push --tags</span><br></pre></td></tr></table></figure>
+
+<p>​        另外：Git支持钩子（hook）的功能，也就是说，在代码仓库里某些特定的事件发生的时候，可以执行一些预定义的脚本。因此，一种可行的做法是：在服务器端配置一个钩子，当你把master推送到中央仓库或者推送标签时，Git服务器能为产品发布进行一次自动的构建。</p>
+<h2 id="6、用户发现了一个bug"><a href="#6、用户发现了一个bug" class="headerlink" title="6、用户发现了一个bug"></a>6、用户发现了一个bug</h2><p><img src="https://sjw-storage.oss-cn-hangzhou.aliyuncs.com/img/c99da3c8ea18cd4707274b61bfcc569f.png" alt="image-20220222174717774"></p>
+<p>​        当一次发布完成之后，张三便回去与罗翔一起开发其他功能了。突然，某个用户提出抱怨说当前发布的产品里有一个bug。为了解决这个问题，张三（或者罗翔）基于master创建了一个用于维护的分支(Hotfix）。她在这个分支上修复了那个bug，然后把改动的代码<strong>直接合并入master</strong>。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b issue-#001 master</span><br><span class="line">\# Fix the bug</span><br><span class="line">git checkout master</span><br><span class="line">git merge issue-#001</span><br><span class="line">git push</span><br></pre></td></tr></table></figure>
+
+<p>​        跟用于发布的分支一样，在维护分支上的改动<strong>也需要合并入develop分支，这一点是很重要的！</strong>因此，张三务必不能忘了这一步。随后，她就<strong>可以将维护分支删除。</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git checkout develop</span><br><span class="line">git merge issue-#001</span><br><span class="line">git push</span><br><span class="line">git branch -d issue-#001</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="四、Git-flow的问题"><a href="#四、Git-flow的问题" class="headerlink" title="四、Git flow的问题"></a>四、Git flow的问题</h1><blockquote>
+<p> Git Flow 的问题：</p>
+</blockquote>
+<p>​         hotfix 和 release  分支引入的复杂性。这些分支对某些组织来说可能是一个好主意，但对绝大多数组织来说都是多余的。如今，大多数组织都在<strong>实践持续交付</strong>，这意味着可以部署您的默认分支。持续交付消除了对修补程序和发布分支的需求，包括它们引入的所有仪式。这个仪式的一个例子是发布分支的合并。尽管确实存在专门的工具来解决这个问题，但它们需要文档并增加了复杂性。开发人员经常会犯错误，例如仅将更改合并到主分支而不是开发分支。这些错误的原因是 Git 流程对于大多数用例来说太复杂了。例如，许多项目发布但不需要做修补程序。</p>
+<hr>
+<blockquote>
+<p>对于Git Flow的问题，GitHub提供了一个更简单的替代方案：GitHub Flow</p>
+</blockquote>
+<pre><code>     [GitHub Flow](https://docs.github.com/en/get-started/quickstart/github-flow) 只有**功能分支(feature)和主分支(master)**：  这个流程简洁明了，许多组织都成功地采用了它。 Atlassian  推荐了一个类似的策略，尽管他们重新定义了特性分支。将所有内容合并到主分支并频繁部署意味着您可以最大限度地减少未发布代码的数量。这种方法符合精益和持续交付的最佳实践。然而，**这个流程仍然留下了很多关于部署、环境、发布和与问题集成的问题**。
+</code></pre>
+<blockquote>
+<p>对于GitHub Flow的问题，GitLab提供了GitLab Flow：见五</p>
+</blockquote>
+<h1 id="五、GitLab-Flow"><a href="#五、GitLab-Flow" class="headerlink" title="五、GitLab Flow"></a>五、GitLab Flow</h1><p>​        GitHub 工作流隐含一个假定：每次合并 feature，主分支的代码是立即发布的。然而，实际中常常不能满足这个假定，例如：你无法控制代码发布时间，例如 App 发布要等审核通过。再例如：发布时间窗口限制，合并分支的时候也许并不在发布时间窗口。</p>
+<h2 id="1、GitLab-工作流中的生产分支（Production-branch"><a href="#1、GitLab-工作流中的生产分支（Production-branch" class="headerlink" title="1、GitLab 工作流中的生产分支（Production branch)"></a>1、GitLab 工作流中的生产分支（Production branch)</h2><p> GitLab 推荐用生产分支来解决上述GitHub Flow问题：</p>
+<p><img src="https://sjw-storage.oss-cn-hangzhou.aliyuncs.com/img/0bbbbb55b4905141924a341293b8d983.png" alt="image-20220224091518158"></p>
+<p>​        Gitlab flow 的最大原则叫做**”上游优先”**（upsteam first），即只存在一个主分支master，它是所有其他分支的”上游”。只有上游分支采纳的代码变化，才能应用到其他分支。</p>
+<blockquote>
+<p>对于”持续发布”的项目，它建议在master分支以外，再建立不同的环境分支。比如，</p>
+</blockquote>
+<ul>
+<li>“开发环境”的分支是master。</li>
+<li>“预发环境”的分支是pre-production。</li>
+<li>“生产环境”的分支是production。</li>
+</ul>
+<p>​        开发分支是预发分支的”上游”，预发分支又是生产分支的”上游”。代码的变化，必须由”上游”向”下游”发展。比如，<strong>生产环境出现了bug，这时就要新建一个功能分支，先把它合并到master</strong>，确认没有问题，再cherry-pick到pre-production，这一步也没有问题，才进入production。只有紧急情况，才允许跳过上游，直接合并到下游分支。</p>
+<p><img src="https://sjw-storage.oss-cn-hangzhou.aliyuncs.com/img/1f4a2b2e4de39c8b159cdf79c02007a8.png" alt="image-20220224091719794"></p>
+<h2 id="2、版本发布"><a href="#2、版本发布" class="headerlink" title="2、版本发布"></a>2、版本发布</h2><p>​        对于”版本发布”的项目，建议的做法是每一个稳定版本，都要从master分支拉出一个分支，比如2-3-stable、2-4-stable等等。</p>
+<p><img src="https://sjw-storage.oss-cn-hangzhou.aliyuncs.com/img/647e71f10aafc15bd00d5263c5772dc3.png" alt="image-20220224091906626"></p>
+<h1 id="六、相关文档"><a href="#六、相关文档" class="headerlink" title="六、相关文档"></a>六、相关文档</h1><p><a target="_blank" rel="noopener" href="https://nvie.com/posts/a-successful-git-branching-model/">A successful Git branching model</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow">Gitflow Workflow</a> </p>
+<p><a target="_blank" rel="noopener" href="https://docs.github.com/en/get-started/quickstart/github-flow">GitHub Flow</a></p>
+<p><a target="_blank" rel="noopener" href="https://docs.gitlab.com/ee/topics/gitlab_flow.html">GitLab Flow</a></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://tosjw.cn">coder-S</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://tosjw.cn/2022/02/16/GitfLow/">http://tosjw.cn/2022/02/16/GitfLow/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://tosjw.cn" target="_blank">coder-S</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/gitFlow/">gitFlow</a></div><div class="post_share"><div class="social-share" data-image="https://gitee.com/coder-SJW/blogimg/raw/master/img/image-20220222113516599.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/02/23/java%E7%AE%80%E6%B4%81%E7%BC%96%E7%A0%81/"><img class="prev-cover" src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fwww.6ke.com.cn%2Fuploads%2Fallimg%2F191027%2F152041O33-25.jpg&amp;refer=http%3A%2F%2Fwww.6ke.com.cn&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=jpeg?sec=1648206098&amp;t=21fb74612cca32f1172932140345a547" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">java简洁编码</div></div></a></div><div class="next-post pull-right"><a href="/2022/02/16/Java-Iterator-%E8%BF%AD%E4%BB%A3%E5%99%A8/"><img class="next-cover" src="https://gitee.com/coder-SJW/blogimg/raw/master/img/image-20220222134730562.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Java Iterator(迭代器)</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://sjw-storage.oss-cn-hangzhou.aliyuncs.com/img/wallhaven-y8lqo7.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">coder-S</div><div class="author-info__description">......</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">9</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">9</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/coder-SJW"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="mailto:2855289441@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">未完待续...</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E4%BB%80%E4%B9%88%E6%98%AFgitFlow%E5%B7%A5%E4%BD%9C%E6%B5%81"><span class="toc-number">1.</span> <span class="toc-text">一、什么是gitFlow工作流</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%93%8D%E4%BD%9C"><span class="toc-number">2.</span> <span class="toc-text">二、操作</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%EF%BC%88Feature-branches%EF%BC%89%E5%8A%9F%E8%83%BD%E5%88%86%E6%94%AF"><span class="toc-number">2.1.</span> <span class="toc-text">1.（Feature branches）功能分支</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1%E5%88%9B%E5%BB%BA%E5%8A%9F%E8%83%BD%E5%88%86%E6%94%AF"><span class="toc-number">2.1.1.</span> <span class="toc-text">1.1创建功能分支</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2%E5%AE%8C%E6%88%90%E5%8A%9F%E8%83%BD%E5%88%86%E6%94%AF"><span class="toc-number">2.1.2.</span> <span class="toc-text">1.2完成功能分支</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%EF%BC%88Release-branches%EF%BC%89%E5%8F%91%E5%B8%83%E5%88%86%E6%94%AF"><span class="toc-number">2.2.</span> <span class="toc-text">2.（Release branches）发布分支</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%EF%BC%88Hotfix-branches%EF%BC%89%E4%BF%AE%E5%A4%8D%E5%88%86%E6%94%AF"><span class="toc-number">2.3.</span> <span class="toc-text">3.（Hotfix branches）修复分支</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E4%BE%8B%E5%AD%90"><span class="toc-number">3.</span> <span class="toc-text">三、例子</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81%E5%88%9B%E5%BB%BAdevelop%E5%88%86%E6%94%AF"><span class="toc-number">3.1.</span> <span class="toc-text">1、创建develop分支</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E5%BC%A0%E4%B8%89%E5%92%8C%E7%BD%97%E7%BF%94%E5%BC%80%E5%A7%8B%E5%BC%80%E5%8F%91%E6%96%B0%E5%8A%9F%E8%83%BD"><span class="toc-number">3.2.</span> <span class="toc-text">2、张三和罗翔开始开发新功能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81%E5%BC%A0%E4%B8%89%E5%AE%8C%E6%88%90%E4%BA%86%E6%96%B0%E5%8A%9F%E8%83%BD%E7%9A%84%E5%BC%80%E5%8F%91"><span class="toc-number">3.3.</span> <span class="toc-text">3、张三完成了新功能的开发</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4%E3%80%81%E5%BC%A0%E4%B8%89%E5%BC%80%E5%A7%8B%E9%A2%84%E5%A4%87%E4%B8%80%E6%AC%A1%E5%8F%91%E5%B8%83"><span class="toc-number">3.4.</span> <span class="toc-text">4、张三开始预备一次发布</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5%E3%80%81%E5%BC%A0%E4%B8%89%E5%AE%8C%E6%88%90%E4%BA%86%E5%8F%91%E5%B8%83"><span class="toc-number">3.5.</span> <span class="toc-text">5、张三完成了发布</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6%E3%80%81%E7%94%A8%E6%88%B7%E5%8F%91%E7%8E%B0%E4%BA%86%E4%B8%80%E4%B8%AAbug"><span class="toc-number">3.6.</span> <span class="toc-text">6、用户发现了一个bug</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B%E3%80%81Git-flow%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-number">4.</span> <span class="toc-text">四、Git flow的问题</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%94%E3%80%81GitLab-Flow"><span class="toc-number">5.</span> <span class="toc-text">五、GitLab Flow</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81GitLab-%E5%B7%A5%E4%BD%9C%E6%B5%81%E4%B8%AD%E7%9A%84%E7%94%9F%E4%BA%A7%E5%88%86%E6%94%AF%EF%BC%88Production-branch"><span class="toc-number">5.1.</span> <span class="toc-text">1、GitLab 工作流中的生产分支（Production branch)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E7%89%88%E6%9C%AC%E5%8F%91%E5%B8%83"><span class="toc-number">5.2.</span> <span class="toc-text">2、版本发布</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E7%9B%B8%E5%85%B3%E6%96%87%E6%A1%A3"><span class="toc-number">6.</span> <span class="toc-text">六、相关文档</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/03/15/%E5%A5%BD%E6%96%87/" title="好文"><img src="https://sjw-storage.oss-cn-hangzhou.aliyuncs.com/img/wallhaven-d5xpj3.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="好文"/></a><div class="content"><a class="title" href="/2022/03/15/%E5%A5%BD%E6%96%87/" title="好文">好文</a><time datetime="2022-03-15T08:08:41.000Z" title="发表于 2022-03-15 16:08:41">2022-03-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/02/25/javaxvalidation%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3/" title="'javax.validation:validation-api常用注解'"><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Finews.gtimg.com%2Fnewsapp_bt%2F0%2F13706307053%2F1000.jpg&amp;refer=http%3A%2F%2Finews.gtimg.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=jpeg?sec=1648370848&amp;t=0f25b6de1146b5270cd0e2d68f6a6766" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="'javax.validation:validation-api常用注解'"/></a><div class="content"><a class="title" href="/2022/02/25/javaxvalidation%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3/" title="'javax.validation:validation-api常用注解'">'javax.validation:validation-api常用注解'</a><time datetime="2022-02-25T08:11:35.000Z" title="发表于 2022-02-25 16:11:35">2022-02-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/02/24/Mysql%E4%BA%8B%E5%8A%A1/" title="Mysql事务"><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic3.zhimg.com%2Fv2-fb87e2201c287892ec1003d11d798ee9_1200x500.jpg&amp;refer=http%3A%2F%2Fpic3.zhimg.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=jpeg?sec=1648274533&amp;t=0a77d901150f6bdb6e780778cde4748c" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Mysql事务"/></a><div class="content"><a class="title" href="/2022/02/24/Mysql%E4%BA%8B%E5%8A%A1/" title="Mysql事务">Mysql事务</a><time datetime="2022-02-24T03:08:27.000Z" title="发表于 2022-02-24 11:08:27">2022-02-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/02/23/java%E7%AE%80%E6%B4%81%E7%BC%96%E7%A0%81/" title="java简洁编码"><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fwww.6ke.com.cn%2Fuploads%2Fallimg%2F191027%2F152041O33-25.jpg&amp;refer=http%3A%2F%2Fwww.6ke.com.cn&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=jpeg?sec=1648206098&amp;t=21fb74612cca32f1172932140345a547" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="java简洁编码"/></a><div class="content"><a class="title" href="/2022/02/23/java%E7%AE%80%E6%B4%81%E7%BC%96%E7%A0%81/" title="java简洁编码">java简洁编码</a><time datetime="2022-02-23T09:46:17.000Z" title="发表于 2022-02-23 17:46:17">2022-02-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/02/16/GitfLow/" title="GitfLow"><img src="https://gitee.com/coder-SJW/blogimg/raw/master/img/image-20220222113516599.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="GitfLow"/></a><div class="content"><a class="title" href="/2022/02/16/GitfLow/" title="GitfLow">GitfLow</a><time datetime="2022-02-16T02:31:01.000Z" title="发表于 2022-02-16 10:31:01">2022-02-16</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://gitee.com/coder-SJW/blogimg/raw/master/img/image-20220222113516599.png')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By coder-S</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat_btn" type="button" title="聊天"><i class="fas fa-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'FPCBPnpckNdlJtOF4WVTyKNQ-MdYXbMMI',
+      appKey: 'i71LJX2MSMcCOMnQGYaWvQVI',
+      avatar: 'monsterid',
+      serverURLs: 'https://fpcbpnpc.api.lncldglobal.com',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: false
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !false) {
+  if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="false"></script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-show-text.min.js" data-mobile="false" data-text="S,J,W" data-fontsize="15px" data-random="false" async="async"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

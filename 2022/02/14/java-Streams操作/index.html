@@ -1,0 +1,247 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>java Streams操作 | coder-S</title><meta name="keywords" content="Streams流"><meta name="author" content="coder-S"><meta name="copyright" content="coder-S"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Streams(流)java.util.Stream 表示能应用在一组元素上一次执行的操作序列。Stream 操作分为中间操作或者最终操作两种，最终操作返回一特定类型的计算结果，而中间操作返回Stream本身，这样你就可以将多个操作依次串起来。Stream 的创建需要指定一个数据源，比如 java.util.Collection 的子类，List 或者 Set， Map 不支持。Stream 的操">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java Streams操作">
+<meta property="og:url" content="http://tosjw.cn/2022/02/14/java-Streams%E6%93%8D%E4%BD%9C/index.html">
+<meta property="og:site_name" content="coder-S">
+<meta property="og:description" content="Streams(流)java.util.Stream 表示能应用在一组元素上一次执行的操作序列。Stream 操作分为中间操作或者最终操作两种，最终操作返回一特定类型的计算结果，而中间操作返回Stream本身，这样你就可以将多个操作依次串起来。Stream 的创建需要指定一个数据源，比如 java.util.Collection 的子类，List 或者 Set， Map 不支持。Stream 的操">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.lxiaoyu.com%2Fwp-content%2Fuploads%2F2021%2F06%2Ffrc-606e933cbe96a03bae726a3f30302294.png&refer=http%3A%2F%2Fimg.lxiaoyu.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1647422545&t=c2155396b3d2896e9de36a2f7841eea4">
+<meta property="article:published_time" content="2022-02-14T09:12:53.000Z">
+<meta property="article:modified_time" content="2022-06-18T02:17:41.130Z">
+<meta property="article:author" content="coder-S">
+<meta property="article:tag" content="Streams流">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.lxiaoyu.com%2Fwp-content%2Fuploads%2F2021%2F06%2Ffrc-606e933cbe96a03bae726a3f30302294.png&refer=http%3A%2F%2Fimg.lxiaoyu.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1647422545&t=c2155396b3d2896e9de36a2f7841eea4"><link rel="shortcut icon" href="https://sjw-storage.oss-cn-hangzhou.aliyuncs.com/img/wallhaven-d5xpj3.png"><link rel="canonical" href="http://tosjw.cn/2022/02/14/java-Streams%E6%93%8D%E4%BD%9C/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script async="async" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><script>(adsbygoogle = window.adsbygoogle || []).push({
+  google_ad_client: 'ca-pub-9717726275141216',
+  enable_page_level_ads: 'true'
+});</script><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?0ca02f4c8276e45dafc84267bc683272";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'java Streams操作',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-06-18 10:17:41'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="coder-S" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://sjw-storage.oss-cn-hangzhou.aliyuncs.com/img/wallhaven-y8lqo7.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">9</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">9</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.lxiaoyu.com%2Fwp-content%2Fuploads%2F2021%2F06%2Ffrc-606e933cbe96a03bae726a3f30302294.png&amp;refer=http%3A%2F%2Fimg.lxiaoyu.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=jpeg?sec=1647422545&amp;t=c2155396b3d2896e9de36a2f7841eea4')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">coder-S</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">java Streams操作</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-02-14T09:12:53.000Z" title="发表于 2022-02-14 17:12:53">2022-02-14</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-06-18T02:17:41.130Z" title="更新于 2022-06-18 10:17:41">2022-06-18</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/java/">java</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>6分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="java Streams操作"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="Streams-流"><a href="#Streams-流" class="headerlink" title="Streams(流)"></a>Streams(流)</h2><p><code>java.util.Stream</code> 表示能应用在一组元素上一次执行的操作序列。Stream 操作分为中间操作或者最终操作两种，最终操作返回一特定类型的计算结果，而中间操作返回Stream本身，这样你就可以将多个操作依次串起来。Stream 的创建需要指定一个数据源，比如<code> java.util.Collection</code> 的子类，List 或者 Set， Map 不支持。Stream 的操作可以串行执行或者并行执行。</p>
+<p>首先看看Stream是怎么用，首先创建实例代码需要用到的数据List：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; stringList = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">stringList.add(<span class="string">&quot;ddd2&quot;</span>);</span><br><span class="line">stringList.add(<span class="string">&quot;aaa2&quot;</span>);</span><br><span class="line">stringList.add(<span class="string">&quot;bbb1&quot;</span>);</span><br><span class="line">stringList.add(<span class="string">&quot;aaa1&quot;</span>);</span><br><span class="line">stringList.add(<span class="string">&quot;bbb3&quot;</span>);</span><br><span class="line">stringList.add(<span class="string">&quot;ccc&quot;</span>);</span><br><span class="line">stringList.add(<span class="string">&quot;bbb2&quot;</span>);</span><br><span class="line">stringList.add(<span class="string">&quot;ddd1&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>Java 8扩展了集合类，可以通过 Collection.stream() 或者 Collection.parallelStream() 来创建一个Stream。下面解释常用的Stream操作：</p>
+<h3 id="Filter-过滤"><a href="#Filter-过滤" class="headerlink" title="Filter(过滤)"></a>Filter(过滤)</h3><p>过滤通过一个predicate接口来过滤并只保留符合条件的元素，该操作属于<strong>中间操作</strong>，所以我们可以在过滤后的结果来应用其他Stream操作（比如forEach）。forEach需要一个函数来对过滤后的元素依次执行。forEach是一个最终操作，所以我们不能在forEach之后来执行其他Stream操作。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 测试 Filter(过滤)</span></span><br><span class="line">stringList</span><br><span class="line">        .stream()</span><br><span class="line">        .filter((s) -&gt; s.startsWith(<span class="string">&quot;a&quot;</span>))</span><br><span class="line">        .forEach(System.out::println);<span class="comment">//aaa2 aaa1</span></span><br></pre></td></tr></table></figure>
+
+<p>forEach 是为 Lambda 而设计的，保持了最紧凑的风格。而且 Lambda 表达式本身是可以重用的，非常方便。</p>
+<h3 id="Sorted-排序"><a href="#Sorted-排序" class="headerlink" title="Sorted(排序)"></a>Sorted(排序)</h3><p>排序是一个 <strong>中间操作</strong>，返回的是排序好后的 Stream。<strong>如果你不指定一个自定义的 Comparator 则会使用默认排序。</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 测试 Sort (排序)</span></span><br><span class="line">stringList</span><br><span class="line">        .stream()</span><br><span class="line">        .sorted()</span><br><span class="line">        .filter((s) -&gt; s.startsWith(<span class="string">&quot;a&quot;</span>))</span><br><span class="line">        .forEach(System.out::println);<span class="comment">// aaa1 aaa2</span></span><br></pre></td></tr></table></figure>
+
+<p>**自定义Comparator **</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">list.stream()</span><br><span class="line">    .sorted(Comparator.comparing(Student::getAge)) <span class="comment">//正序</span></span><br><span class="line">list.stream()</span><br><span class="line">    .sorted(Comparator.comparing(Student::getAge).reversed()) <span class="comment">//逆序</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>补充：当然还可以不用借助steam方式直接排序</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">list.sort(Comparator.comparing(Integer::intValue)); <span class="comment">//正序</span></span><br><span class="line">list.sort(Comparator.comparing(Integer::intValue).reversed());<span class="comment">//逆序</span></span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p>需要注意的是，排序只创建了一个排列好后的Stream，而<strong>不会影响原有的数据源</strong>，排序之后原数据stringList是不会被修改的：</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">System.out.println(stringList);<span class="comment">// ddd2, aaa2, bbb1, aaa1, bbb3, ccc, bbb2, ddd1</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Map-映射"><a href="#Map-映射" class="headerlink" title="Map(映射)"></a>Map(映射)</h3><p>中间操作 map 会将元素根据指定的 Function 接口来依次将元素转成另外的对象。</p>
+<p>下面的示例展示了将字符串转换为大写字符串。你也可以通过map来将对象转换成其他类型，map返回的Stream类型是根据你map传递进去的函数的返回值决定的。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 测试 Map 操作</span></span><br><span class="line">stringList</span><br><span class="line">        .stream()</span><br><span class="line">        .map(String::toUpperCase)</span><br><span class="line">        .sorted((a, b) -&gt; b.compareTo(a))</span><br><span class="line">        .forEach(System.out::println);<span class="comment">// &quot;DDD2&quot;, &quot;DDD1&quot;, &quot;CCC&quot;, &quot;BBB3&quot;, &quot;BBB2&quot;, &quot;BBB1&quot;, &quot;AAA2&quot;, &quot;AAA1&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Match-匹配"><a href="#Match-匹配" class="headerlink" title="Match(匹配)"></a>Match(匹配)</h3><p>Stream提供了多种匹配操作，允许检测指定的Predicate是否匹配整个Stream。所有的匹配操作都是 <strong>最终操作</strong> ，并返回一个 boolean 类型的值。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 测试 Match (匹配)操作</span></span><br><span class="line"><span class="keyword">boolean</span> anyStartsWithA =</span><br><span class="line">        stringList</span><br><span class="line">                .stream()</span><br><span class="line">                .anyMatch((s) -&gt; s.startsWith(<span class="string">&quot;a&quot;</span>));</span><br><span class="line">System.out.println(anyStartsWithA);      <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">boolean</span> allStartsWithA =</span><br><span class="line">        stringList</span><br><span class="line">                .stream()</span><br><span class="line">                .allMatch((s) -&gt; s.startsWith(<span class="string">&quot;a&quot;</span>));</span><br><span class="line"></span><br><span class="line">System.out.println(allStartsWithA);      <span class="comment">// false</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">boolean</span> noneStartsWithZ =</span><br><span class="line">        stringList</span><br><span class="line">                .stream()</span><br><span class="line">                .noneMatch((s) -&gt; s.startsWith(<span class="string">&quot;z&quot;</span>));</span><br><span class="line"></span><br><span class="line">System.out.println(noneStartsWithZ);      <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Count-计数"><a href="#Count-计数" class="headerlink" title="Count(计数)"></a>Count(计数)</h3><p>计数是一个 <strong>最终操作</strong>，返回Stream中元素的个数，<strong>返回值类型是 long</strong>。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//测试 Count (计数)操作</span></span><br><span class="line">  <span class="keyword">long</span> startsWithB =</span><br><span class="line">          stringList</span><br><span class="line">                  .stream()</span><br><span class="line">                  .filter((s) -&gt; s.startsWith(<span class="string">&quot;b&quot;</span>))</span><br><span class="line">                  .count();</span><br><span class="line">  System.out.println(startsWithB);    <span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Reduce-规约"><a href="#Reduce-规约" class="headerlink" title="Reduce(规约)"></a>Reduce(规约)</h3><p>这是一个 <strong>最终操作</strong> ，允许通过指定的函数来将stream中的多个元素规约为一个元素，规约后的结果是通过Optional 接口表示的：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//测试 Reduce (规约)操作</span></span><br><span class="line">Optional&lt;String&gt; reduced = stringList.stream()</span><br><span class="line">             				.sorted()</span><br><span class="line">                			.reduce((s1, s2) -&gt; s1 + <span class="string">&quot;#&quot;</span> + s2);</span><br><span class="line">reduced.ifPresent(System.out::println);</span><br></pre></td></tr></table></figure>
+
+<p><strong>译者注：</strong> 这个方法的主要作用是把 Stream  元素组合起来。它提供一个起始值（种子），然后依照运算规则（BinaryOperator），和前面 Stream 的第一个、第二个、第 n  个元素组合。从这个意义上说，字符串拼接、数值的 sum、min、max、average 都是特殊的 reduce。例如 Stream 的 sum 就相当于<code>Integer sum = integers.reduce(0, (a, b) -&gt; a+b);</code>也有没有起始值的情况，这时会把 Stream 的前面两个元素组合起来，返回的是 Optional。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 字符串连接，concat = &quot;ABCD&quot;</span></span><br><span class="line">String concat = Stream.of(<span class="string">&quot;A&quot;</span>, <span class="string">&quot;B&quot;</span>, <span class="string">&quot;C&quot;</span>, <span class="string">&quot;D&quot;</span>).reduce(<span class="string">&quot;&quot;</span>, String::concat); </span><br><span class="line"><span class="comment">// 求最小值，minValue = -3.0</span></span><br><span class="line"><span class="keyword">double</span> minValue = Stream.of(-<span class="number">1.5</span>, <span class="number">1.0</span>, -<span class="number">3.0</span>, -<span class="number">2.0</span>).reduce(Double.MAX_VALUE, Double::min); </span><br><span class="line"><span class="comment">// 求和，sumValue = 10, 有起始值</span></span><br><span class="line"><span class="keyword">int</span> sumValue = Stream.of(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>).reduce(<span class="number">0</span>, Integer::sum);</span><br><span class="line"><span class="comment">// 求和，sumValue = 10, 无起始值</span></span><br><span class="line">sumValue = Stream.of(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>).reduce(Integer::sum).get();</span><br><span class="line"><span class="comment">// 过滤，字符串连接，concat = &quot;ace&quot;</span></span><br><span class="line">concat = Stream.of(<span class="string">&quot;a&quot;</span>, <span class="string">&quot;B&quot;</span>, <span class="string">&quot;c&quot;</span>, <span class="string">&quot;D&quot;</span>, <span class="string">&quot;e&quot;</span>, <span class="string">&quot;F&quot;</span>).</span><br><span class="line"> filter(x -&gt; x.compareTo(<span class="string">&quot;Z&quot;</span>) &gt; <span class="number">0</span>).</span><br><span class="line"> reduce(<span class="string">&quot;&quot;</span>, String::concat);</span><br></pre></td></tr></table></figure>
+
+<p>上面代码例如第一个示例的 reduce()，第一个参数（空白字符）即为起始值，第二个参数（String::concat）为  BinaryOperator。这类有起始值的 reduce() 都返回具体的对象。而对于第四个示例没有起始值的  reduce()，由于可能没有足够的元素，返回的是 Optional，请留意这个区别。更多内容查看： <a href="https://gitee.com/link?target=https://www.ibm.com/developerworks/cn/java/j-lo-java8streamapi/index.html">IBM：Java 8 中的 Streams API 详解</a></p>
+<h2 id="Parallel-Streams-并行流"><a href="#Parallel-Streams-并行流" class="headerlink" title="Parallel Streams(并行流)"></a>Parallel Streams(并行流)</h2><p>前面提到过Stream有串行和并行两种，串行Stream上的操作是在一个线程中依次完成，而并行Stream则是在多个线程上同时执行。</p>
+<p>下面的例子展示了是如何通过并行Stream来提升性能：</p>
+<p>首先我们创建一个没有重复元素的大表：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> max = <span class="number">1000000</span>;</span><br><span class="line">List&lt;String&gt; values = <span class="keyword">new</span> ArrayList&lt;&gt;(max);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; max; i++) &#123;</span><br><span class="line">    UUID uuid = UUID.randomUUID();</span><br><span class="line">    values.add(uuid.toString());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我们分别用串行和并行两种方式对其进行排序，最后看看所用时间的对比。</p>
+<h3 id="Sequential-Sort-串行排序"><a href="#Sequential-Sort-串行排序" class="headerlink" title="Sequential Sort(串行排序)"></a>Sequential Sort(串行排序)</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//串行排序</span></span><br><span class="line"><span class="keyword">long</span> t0 = System.nanoTime();</span><br><span class="line"><span class="keyword">long</span> count = values.stream().sorted().count();</span><br><span class="line">System.out.println(count);</span><br><span class="line"></span><br><span class="line"><span class="keyword">long</span> t1 = System.nanoTime();</span><br><span class="line"></span><br><span class="line"><span class="keyword">long</span> millis = TimeUnit.NANOSECONDS.toMillis(t1 - t0);</span><br><span class="line">System.out.println(String.format(<span class="string">&quot;sequential sort took: %d ms&quot;</span>, millis));</span><br><span class="line"><span class="number">1000000</span></span><br><span class="line">sequential sort took: <span class="number">709</span> ms<span class="comment">//串行排序所用的时间</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Parallel-Sort-并行排序"><a href="#Parallel-Sort-并行排序" class="headerlink" title="Parallel Sort(并行排序)"></a>Parallel Sort(并行排序)</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//并行排序</span></span><br><span class="line"><span class="keyword">long</span> t0 = System.nanoTime();</span><br><span class="line"></span><br><span class="line"><span class="keyword">long</span> count = values.parallelStream().sorted().count();</span><br><span class="line">System.out.println(count);</span><br><span class="line"></span><br><span class="line"><span class="keyword">long</span> t1 = System.nanoTime();</span><br><span class="line"></span><br><span class="line"><span class="keyword">long</span> millis = TimeUnit.NANOSECONDS.toMillis(t1 - t0);</span><br><span class="line">System.out.println(String.format(<span class="string">&quot;parallel sort took: %d ms&quot;</span>, millis));</span><br><span class="line"><span class="number">1000000</span></span><br><span class="line">parallel sort took: <span class="number">475</span> ms<span class="comment">//串行排序所用的时间</span></span><br></pre></td></tr></table></figure>
+
+<p>上面两个代码几乎是一样的，但是并行版的快了 50% 左右，唯一需要做的改动就是将 <code>stream()</code> 改为<code>parallelStream()</code>。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://tosjw.cn">coder-S</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://tosjw.cn/2022/02/14/java-Streams%E6%93%8D%E4%BD%9C/">http://tosjw.cn/2022/02/14/java-Streams%E6%93%8D%E4%BD%9C/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://tosjw.cn" target="_blank">coder-S</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Streams%E6%B5%81/">Streams流</a></div><div class="post_share"><div class="social-share" data-image="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.lxiaoyu.com%2Fwp-content%2Fuploads%2F2021%2F06%2Ffrc-606e933cbe96a03bae726a3f30302294.png&amp;refer=http%3A%2F%2Fimg.lxiaoyu.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=jpeg?sec=1647422545&amp;t=c2155396b3d2896e9de36a2f7841eea4" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/02/16/Java-Iterator-%E8%BF%AD%E4%BB%A3%E5%99%A8/"><img class="prev-cover" src="https://gitee.com/coder-SJW/blogimg/raw/master/img/image-20220222134730562.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Java Iterator(迭代器)</div></div></a></div><div class="next-post pull-right"><a href="/2021/12/31/springboot%E5%88%86%E9%A1%B5-1/"><img class="next-cover" src="https://gitee.com/coder-SJW/blogimg/raw/master/img/image-20210126151605884.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">springboot分页</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://sjw-storage.oss-cn-hangzhou.aliyuncs.com/img/wallhaven-y8lqo7.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">coder-S</div><div class="author-info__description">......</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">9</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">9</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/coder-SJW"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="mailto:2855289441@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">未完待续...</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Streams-%E6%B5%81"><span class="toc-number">1.</span> <span class="toc-text">Streams(流)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Filter-%E8%BF%87%E6%BB%A4"><span class="toc-number">1.1.</span> <span class="toc-text">Filter(过滤)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sorted-%E6%8E%92%E5%BA%8F"><span class="toc-number">1.2.</span> <span class="toc-text">Sorted(排序)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Map-%E6%98%A0%E5%B0%84"><span class="toc-number">1.3.</span> <span class="toc-text">Map(映射)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Match-%E5%8C%B9%E9%85%8D"><span class="toc-number">1.4.</span> <span class="toc-text">Match(匹配)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Count-%E8%AE%A1%E6%95%B0"><span class="toc-number">1.5.</span> <span class="toc-text">Count(计数)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Reduce-%E8%A7%84%E7%BA%A6"><span class="toc-number">1.6.</span> <span class="toc-text">Reduce(规约)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Parallel-Streams-%E5%B9%B6%E8%A1%8C%E6%B5%81"><span class="toc-number">2.</span> <span class="toc-text">Parallel Streams(并行流)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Sequential-Sort-%E4%B8%B2%E8%A1%8C%E6%8E%92%E5%BA%8F"><span class="toc-number">2.1.</span> <span class="toc-text">Sequential Sort(串行排序)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Parallel-Sort-%E5%B9%B6%E8%A1%8C%E6%8E%92%E5%BA%8F"><span class="toc-number">2.2.</span> <span class="toc-text">Parallel Sort(并行排序)</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/03/15/%E5%A5%BD%E6%96%87/" title="好文"><img src="https://sjw-storage.oss-cn-hangzhou.aliyuncs.com/img/wallhaven-d5xpj3.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="好文"/></a><div class="content"><a class="title" href="/2022/03/15/%E5%A5%BD%E6%96%87/" title="好文">好文</a><time datetime="2022-03-15T08:08:41.000Z" title="发表于 2022-03-15 16:08:41">2022-03-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/02/25/javaxvalidation%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3/" title="'javax.validation:validation-api常用注解'"><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Finews.gtimg.com%2Fnewsapp_bt%2F0%2F13706307053%2F1000.jpg&amp;refer=http%3A%2F%2Finews.gtimg.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=jpeg?sec=1648370848&amp;t=0f25b6de1146b5270cd0e2d68f6a6766" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="'javax.validation:validation-api常用注解'"/></a><div class="content"><a class="title" href="/2022/02/25/javaxvalidation%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3/" title="'javax.validation:validation-api常用注解'">'javax.validation:validation-api常用注解'</a><time datetime="2022-02-25T08:11:35.000Z" title="发表于 2022-02-25 16:11:35">2022-02-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/02/24/Mysql%E4%BA%8B%E5%8A%A1/" title="Mysql事务"><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic3.zhimg.com%2Fv2-fb87e2201c287892ec1003d11d798ee9_1200x500.jpg&amp;refer=http%3A%2F%2Fpic3.zhimg.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=jpeg?sec=1648274533&amp;t=0a77d901150f6bdb6e780778cde4748c" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Mysql事务"/></a><div class="content"><a class="title" href="/2022/02/24/Mysql%E4%BA%8B%E5%8A%A1/" title="Mysql事务">Mysql事务</a><time datetime="2022-02-24T03:08:27.000Z" title="发表于 2022-02-24 11:08:27">2022-02-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/02/23/java%E7%AE%80%E6%B4%81%E7%BC%96%E7%A0%81/" title="java简洁编码"><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fwww.6ke.com.cn%2Fuploads%2Fallimg%2F191027%2F152041O33-25.jpg&amp;refer=http%3A%2F%2Fwww.6ke.com.cn&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=jpeg?sec=1648206098&amp;t=21fb74612cca32f1172932140345a547" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="java简洁编码"/></a><div class="content"><a class="title" href="/2022/02/23/java%E7%AE%80%E6%B4%81%E7%BC%96%E7%A0%81/" title="java简洁编码">java简洁编码</a><time datetime="2022-02-23T09:46:17.000Z" title="发表于 2022-02-23 17:46:17">2022-02-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/02/16/GitfLow/" title="GitfLow"><img src="https://gitee.com/coder-SJW/blogimg/raw/master/img/image-20220222113516599.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="GitfLow"/></a><div class="content"><a class="title" href="/2022/02/16/GitfLow/" title="GitfLow">GitfLow</a><time datetime="2022-02-16T02:31:01.000Z" title="发表于 2022-02-16 10:31:01">2022-02-16</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.lxiaoyu.com%2Fwp-content%2Fuploads%2F2021%2F06%2Ffrc-606e933cbe96a03bae726a3f30302294.png&amp;refer=http%3A%2F%2Fimg.lxiaoyu.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=jpeg?sec=1647422545&amp;t=c2155396b3d2896e9de36a2f7841eea4')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By coder-S</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat_btn" type="button" title="聊天"><i class="fas fa-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'FPCBPnpckNdlJtOF4WVTyKNQ-MdYXbMMI',
+      appKey: 'i71LJX2MSMcCOMnQGYaWvQVI',
+      avatar: 'monsterid',
+      serverURLs: 'https://fpcbpnpc.api.lncldglobal.com',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: false
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !false) {
+  if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="false"></script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-show-text.min.js" data-mobile="false" data-text="S,J,W" data-fontsize="15px" data-random="false" async="async"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
