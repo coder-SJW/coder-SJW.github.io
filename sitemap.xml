@@ -153,13 +153,6 @@
   </url>
   
   <url>
-    <loc>http://tosjw.cn/tags/docker/</loc>
-    <lastmod>2022-06-18</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>http://tosjw.cn/tags/%E8%BF%AD%E4%BB%A3%E5%99%A8/</loc>
     <lastmod>2022-06-18</lastmod>
     <changefreq>weekly</changefreq>
@@ -167,7 +160,7 @@
   </url>
   
   <url>
-    <loc>http://tosjw.cn/tags/Streams%E6%B5%81/</loc>
+    <loc>http://tosjw.cn/tags/docker/</loc>
     <lastmod>2022-06-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -181,14 +174,14 @@
   </url>
   
   <url>
-    <loc>http://tosjw.cn/tags/%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3/</loc>
+    <loc>http://tosjw.cn/tags/Streams%E6%B5%81/</loc>
     <lastmod>2022-06-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://tosjw.cn/tags/%E7%BC%96%E7%A0%81%E8%A7%84%E8%8C%83/</loc>
+    <loc>http://tosjw.cn/tags/%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3/</loc>
     <lastmod>2022-06-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -208,6 +201,13 @@
     <priority>0.2</priority>
   </url>
   
+  <url>
+    <loc>http://tosjw.cn/tags/%E7%BC%96%E7%A0%81%E8%A7%84%E8%8C%83/</loc>
+    <lastmod>2022-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
 
   
   <url>
@@ -218,14 +218,14 @@
   </url>
   
   <url>
-    <loc>http://tosjw.cn/categories/Docker/</loc>
+    <loc>http://tosjw.cn/categories/java/</loc>
     <lastmod>2022-06-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://tosjw.cn/categories/java/</loc>
+    <loc>http://tosjw.cn/categories/Docker/</loc>
     <lastmod>2022-06-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
