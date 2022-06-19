@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>JVM一条龙</title>
+      <link href="/2022/06/19/JVM%E4%B8%80%E6%9D%A1%E9%BE%99/"/>
+      <url>/2022/06/19/JVM%E4%B8%80%E6%9D%A1%E9%BE%99/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>JVM，之前觉得是不可触及的东西，怎么也得高级Java程序员才能接触吧，我等鼠辈不感动不感动。然后后面毕业时找工作发现都要求应届生熟悉JVM……额…其实可以试试。</p></blockquote><h1 id="一、JVM架构图"><a href="#一、JVM架构图" class="headerlink" title="一、JVM架构图"></a>一、JVM架构图</h1><p><img src="https://sjw-storage.oss-cn-hangzhou.aliyuncs.com/img/image-20220619084242903.png" alt="image-20220619084242903"></p><p>好大一个图</p><h1 id="二、类加载"><a href="#二、类加载" class="headerlink" title="二、类加载"></a>二、类加载</h1><blockquote><p>首先得知道什么是类加载？</p></blockquote><p>类加载就是将类信息经过一系列处理放到内存，供实例化使用。</p><h2 id="1、加载"><a href="#1、加载" class="headerlink" title="1、加载"></a>1、加载</h2><p>JVM提供了不同类型的类加载器，采用<a href="https://zhuanlan.zhihu.com/p/455290245">双亲委派机制</a>。不同类加载器的加载路径不同。</p><p><img src="https://sjw-storage.oss-cn-hangzhou.aliyuncs.com/img/image-20220619090127403.png" alt="image-20220619090127403"></p><p><strong>双亲委派的好处：</strong>1、反正类的重复加载。2、防止核心API被恶意篡改。</p><h2 id="2、链接"><a href="#2、链接" class="headerlink" title="2、链接"></a>2、链接</h2><p>链接阶段有三个子步骤：</p><p><img src="https://sjw-storage.oss-cn-hangzhou.aliyuncs.com/img/image-20220619090902387.png" alt="image-20220619090902387"></p><p>验证：确保class文件的字节流信息符合JVM的规范。</p><p>准备：为类中的静态变量分配内存空间。</p><p>解析：将常量池中的符号引用转换为直接引用。</p><p>ps：符号引用（以符号来描述引用的目标），直接引用（直接指向目标的指针）</p><h2 id="3、初始化"><a href="#3、初始化" class="headerlink" title="3、初始化"></a>3、初始化</h2><p>简言之，<a href="https://blog.csdn.net/Weixiaohuai/article/details/120047803">为类的静态变量赋予正确的初始值</a>。</p><h1 id="三、运行时数据区"><a href="#三、运行时数据区" class="headerlink" title="三、运行时数据区"></a>三、运行时数据区</h1><h2 id="1、组成部分"><a href="#1、组成部分" class="headerlink" title="1、组成部分"></a>1、组成部分</h2><p>就用之前画的思维导图大致描述吧</p><p><img src="https://sjw-storage.oss-cn-hangzhou.aliyuncs.com/img/image-20220619094258496.png" alt="image-20220619094258496"></p><h2 id="2、如何判断对象是否要被回收？"><a href="#2、如何判断对象是否要被回收？" class="headerlink" title="2、如何判断对象是否要被回收？"></a>2、如何判断对象是否要被回收？</h2><blockquote><p>可达性分析算法</p></blockquote><p>以根对象集合（GCRoots）为起始点，按照从上至下的方式搜索被根对象集合所连接的目标对象是否可达，不可达的则会被下次gc回收</p><p><img src="https://sjw-storage.oss-cn-hangzhou.aliyuncs.com/img/image-20220619094744928.png" alt="image-20220619094744928"></p><blockquote><p>引用记数法</p></blockquote><p>对象中添加一个引用计数器，每当有一个地方引用它时，计数器的值就加一；当引用失效时，计数器的值就减一。当某一时刻计数器的值为零时，这个对象就不再被使用。</p><p>ps：存在循环依赖的问题。</p><h2 id="3、垃圾回收算法"><a href="#3、垃圾回收算法" class="headerlink" title="3、垃圾回收算法"></a>3、垃圾回收算法</h2><ul><li>复制算法（新生代）</li><li>分代算法</li><li>标记清除（老年代）</li><li>标记整理（老年代）</li></ul><p><a href="https://blog.csdn.net/weixin_43863054/article/details/119149366">这老哥讲得很清楚，就不做复印机了</a></p><h2 id="4、GC收集器"><a href="#4、GC收集器" class="headerlink" title="4、GC收集器"></a>4、GC收集器</h2><p>对于我们做服务器开发，要深入理解CMS和G1这两个：</p><p><img src="https://sjw-storage.oss-cn-hangzhou.aliyuncs.com/img/image-20220619100016364.png" alt="image-20220619100016364"></p><h2 id="未完待续…"><a href="#未完待续…" class="headerlink" title="未完待续…"></a>未完待续…</h2>]]></content>
+      
+      
+      <categories>
+          
+          <category> java </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> jvm </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>好文</title>
       <link href="/2022/03/15/%E5%A5%BD%E6%96%87/"/>
       <url>/2022/03/15/%E5%A5%BD%E6%96%87/</url>
