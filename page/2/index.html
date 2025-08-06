@@ -1,0 +1,206 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>coder-S</title><meta name="author" content="coder-S"><meta name="copyright" content="coder-S"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="......">
+<meta property="og:type" content="website">
+<meta property="og:title" content="coder-S">
+<meta property="og:url" content="http://tosjw.cn/page/2/index.html">
+<meta property="og:site_name" content="coder-S">
+<meta property="og:description" content="......">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://tosjw.cn/img/butterfly-icon.png">
+<meta property="article:author" content="coder-S">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://tosjw.cn/img/butterfly-icon.png"><script type="application/ld+json"></script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://tosjw.cn/page/2/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'coder-S',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'home'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div class="page" id="body-wrap"><header class="full_page" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">coder-S</span></a></span><div id="menus"></div></nav><div id="site-info"><h1 id="site-title">coder-S</h1></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts nc" id="recent-posts"><div class="recent-post-items"><div class="recent-post-item"><div class="post_cover left"><a href="/2022/01/29/%E5%B7%A5%E4%BD%9C%E6%9D%82%E8%AE%B0/" title="工作杂记"><img class="post-bg" src="https://gitee.com/coder-SJW/blogimg/raw/master/img/image-20220119143213034.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="工作杂记"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/01/29/%E5%B7%A5%E4%BD%9C%E6%9D%82%E8%AE%B0/" title="工作杂记">工作杂记</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-01-29T03:33:38.000Z" title="发表于 2022-01-29 11:33:38">2022-01-29</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%9D%82%E8%AE%B0/">杂记</a></span></div><div class="content">一、Stream流1、创建 使用Collection接口下的stream方法或parallelStream方法  实现了Collection接口的可用，如List、Vector、Set 123List&lt;String&gt; list = new ArrayList&lt;&gt;();Stream&lt;String&gt; stream = list.stream(); //获取一个顺序流Stream&lt;String&gt; parallelStream = list.parallelStream(); //获取一个并行流   使用Arrays工具类的stream方法，将数组转成流  12Integer[] nums = new Integer[10];Stream&lt;Integer&gt; stream = Arrays.stream(nums);   使用Stream中的静态方法：of()、iterate()、generate()  1234567Stream&lt;Integer&gt; stream = Stream.of(1,2,3,4,5,6); St...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2021/12/31/springboot%E5%88%86%E9%A1%B5-1/" title="springboot分页"><img class="post-bg" src="https://gitee.com/coder-SJW/blogimg/raw/master/img/image-20210126151605884.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="springboot分页"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/12/31/springboot%E5%88%86%E9%A1%B5-1/" title="springboot分页">springboot分页</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-12-30T17:51:35.000Z" title="发表于 2021-12-31 01:51:35">2021-12-31</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/SpringBoot/">SpringBoot</a></span></div><div class="content"> 一、分页插件（pagehelper）​		之前写项目时都是自己去写分页，头大！自己写的分页很可能要写两次查询，一次查内容，二次查条数。这种就是费力不讨好的事，所以去看了一下pagehelper分页插件（都说是最方便使用的分页插件），学完随便做个笔记。 ​		pagehelper插件主要是把PageHelper.startPage(pageNum, pageSize)放在sql查询之前。他会去处理查询内容，进行分页处理。 1、导包123456&lt;!-- pagehelper --&gt;        &lt;dependency&gt;            &lt;groupId&gt;com.github.pagehelper&lt;/groupId&gt;            &lt;artifactId&gt;pagehelper-spring-boot-starter&lt;/artifactId&gt;            &lt;version&gt;1.2.5&lt;/version&gt;        &lt;/dependency&gt;  2、分...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2021/12/31/docker%E7%AC%94%E8%AE%B0-1/" title="docker笔记"><img class="post-bg" src="https://i.loli.net/2021/02/22/pnbmUDYPf4tvHjh.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="docker笔记"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/12/31/docker%E7%AC%94%E8%AE%B0-1/" title="docker笔记">docker笔记</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-12-30T17:46:49.000Z" title="发表于 2021-12-31 01:46:49">2021-12-31</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Docker/">Docker</a></span></div><div class="content">一、Docker基本组成 镜像（image）： docker镜像就好比是一个模板，可以通过这个模板来创建容器服务，通过这个镜像可以创建多个容器（最终项目运行就是在容器中）。 容器（container）： Docker利用容器技术，独立运行一个或者一组应用，通过镜像来创建。 容器基本命令&#x3D;》启动、停止、删除 仓库（repository）： 仓库就是存放镜像的地方 仓库分为共有仓库和私有仓库 Docker Hub（默认是国外的仓库） 阿里云镜像加速器（配置镜像加速&#x3D;》常用！！） 二、安装Docker1、安装步骤docker官方安装指南(centos) 1234567891011121314151617181920212223242526# 1、卸载旧的docker版本yum remove docker \                  docker-client \                  docker-client-latest \                  docker-common \                  docker-l...</div></div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">coder-S</div><div class="author-info-description">......</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">13</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">10</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/08/07/%E7%8E%8B%E5%B0%8F%E5%87%A4/" title="王小凤"><img src="https://i.loli.net/2021/02/22/pnbmUDYPf4tvHjh.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="王小凤"/></a><div class="content"><a class="title" href="/2025/08/07/%E7%8E%8B%E5%B0%8F%E5%87%A4/" title="王小凤">王小凤</a><time datetime="2025-08-06T17:46:49.000Z" title="发表于 2025-08-07 01:46:49">2025-08-07</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/03/15/%E5%A5%BD%E6%96%87/" title="好文">好文</a><time datetime="2022-03-15T08:08:41.000Z" title="发表于 2022-03-15 16:08:41">2022-03-15</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/03/14/Spring%E5%BE%AA%E7%8E%AF%E4%BE%9D%E8%B5%96/" title="Spring循环依赖">Spring循环依赖</a><time datetime="2022-03-14T05:44:37.000Z" title="发表于 2022-03-14 13:44:37">2022-03-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/02/25/javax-validation-validation-api%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3/" title="'javax.validation:validation-api常用注解'"><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Finews.gtimg.com%2Fnewsapp_bt%2F0%2F13706307053%2F1000.jpg&amp;refer=http%3A%2F%2Finews.gtimg.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=jpeg?sec=1648370848&amp;t=0f25b6de1146b5270cd0e2d68f6a6766" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="'javax.validation:validation-api常用注解'"/></a><div class="content"><a class="title" href="/2022/02/25/javax-validation-validation-api%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3/" title="'javax.validation:validation-api常用注解'">'javax.validation:validation-api常用注解'</a><time datetime="2022-02-25T08:11:35.000Z" title="发表于 2022-02-25 16:11:35">2022-02-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/02/25/javaxvalidation%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3/" title="'javax.validation:validation-api常用注解'"><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Finews.gtimg.com%2Fnewsapp_bt%2F0%2F13706307053%2F1000.jpg&amp;refer=http%3A%2F%2Finews.gtimg.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=jpeg?sec=1648370848&amp;t=0f25b6de1146b5270cd0e2d68f6a6766" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="'javax.validation:validation-api常用注解'"/></a><div class="content"><a class="title" href="/2022/02/25/javaxvalidation%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3/" title="'javax.validation:validation-api常用注解'">'javax.validation:validation-api常用注解'</a><time datetime="2022-02-25T08:11:35.000Z" title="发表于 2022-02-25 16:11:35">2022-02-25</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            
+          </div>
+          <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Docker/"><span class="card-category-list-name">Docker</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/SpringBoot/"><span class="card-category-list-name">SpringBoot</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/git/"><span class="card-category-list-name">git</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/java/"><span class="card-category-list-name">java</span><span class="card-category-list-count">5</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/mysql/"><span class="card-category-list-name">mysql</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%9D%82%E8%AE%B0/"><span class="card-category-list-name">杂记</span><span class="card-category-list-count">1</span></a></li>
+          </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/%E8%BF%AD%E4%BB%A3%E5%99%A8/" style="font-size: 1.1em; color: #999">迭代器</a> <a href="/tags/%E5%88%86%E9%A1%B5/" style="font-size: 1.1em; color: #999">分页</a> <a href="/tags/gitFlow/" style="font-size: 1.1em; color: #999">gitFlow</a> <a href="/tags/Streams%E6%B5%81/" style="font-size: 1.1em; color: #999">Streams流</a> <a href="/tags/%E7%BC%96%E7%A0%81%E8%A7%84%E8%8C%83/" style="font-size: 1.1em; color: #999">编码规范</a> <a href="/tags/%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3/" style="font-size: 1.5em; color: #99a9bf">常用注解</a> <a href="/tags/docker/" style="font-size: 1.5em; color: #99a9bf">docker</a> <a href="/tags/mysql%E4%BA%8B%E5%8A%A1/" style="font-size: 1.1em; color: #999">mysql事务</a> <a href="/tags/%E6%9D%82%E8%AE%B0/" style="font-size: 1.1em; color: #999">杂记</a> <a href="/tags/springboot/" style="font-size: 1.1em; color: #999">springboot</a></div></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>归档</span>
+      
+    </div>
+  
+    <ul class="card-archive-list">
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/08/">
+            <span class="card-archive-list-date">
+              八月 2025
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2022/03/">
+            <span class="card-archive-list-date">
+              三月 2022
+            </span>
+            <span class="card-archive-list-count">2</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2022/02/">
+            <span class="card-archive-list-date">
+              二月 2022
+            </span>
+            <span class="card-archive-list-count">7</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2022/01/">
+            <span class="card-archive-list-date">
+              一月 2022
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2021/12/">
+            <span class="card-archive-list-date">
+              十二月 2021
+            </span>
+            <span class="card-archive-list-count">2</span>
+          </a>
+        </li>
+      
+    </ul>
+  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">13</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总浏览量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2025-08-06T18:01:44.599Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 By coder-S</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.4.3</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

@@ -1,0 +1,248 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>工作杂记 | coder-S</title><meta name="author" content="coder-S"><meta name="copyright" content="coder-S"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="一、Stream流1、创建 使用Collection接口下的stream方法或parallelStream方法  实现了Collection接口的可用，如List、Vector、Set 123List&lt;String&gt; list &#x3D; new ArrayList&lt;&gt;();Stream&lt;String&gt; stream &#x3D; list.stream(); &#x2F;&#x2F;获取一个顺序流">
+<meta property="og:type" content="article">
+<meta property="og:title" content="工作杂记">
+<meta property="og:url" content="http://tosjw.cn/2022/01/29/%E5%B7%A5%E4%BD%9C%E6%9D%82%E8%AE%B0/index.html">
+<meta property="og:site_name" content="coder-S">
+<meta property="og:description" content="一、Stream流1、创建 使用Collection接口下的stream方法或parallelStream方法  实现了Collection接口的可用，如List、Vector、Set 123List&lt;String&gt; list &#x3D; new ArrayList&lt;&gt;();Stream&lt;String&gt; stream &#x3D; list.stream(); &#x2F;&#x2F;获取一个顺序流">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/coder-SJW/blogimg/raw/master/img/image-20220119143213034.png">
+<meta property="article:published_time" content="2022-01-29T03:33:38.000Z">
+<meta property="article:modified_time" content="2025-08-06T12:46:02.771Z">
+<meta property="article:author" content="coder-S">
+<meta property="article:tag" content="杂记">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/coder-SJW/blogimg/raw/master/img/image-20220119143213034.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "工作杂记",
+  "url": "http://tosjw.cn/2022/01/29/%E5%B7%A5%E4%BD%9C%E6%9D%82%E8%AE%B0/",
+  "image": "https://gitee.com/coder-SJW/blogimg/raw/master/img/image-20220119143213034.png",
+  "datePublished": "2022-01-29T03:33:38.000Z",
+  "dateModified": "2025-08-06T12:46:02.771Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "coder-S",
+      "url": "http://tosjw.cn"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://tosjw.cn/2022/01/29/%E5%B7%A5%E4%BD%9C%E6%9D%82%E8%AE%B0/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '工作杂记',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://gitee.com/coder-SJW/blogimg/raw/master/img/image-20220119143213034.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">coder-S</span></a><a class="nav-page-title" href="/"><span class="site-name">工作杂记</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"></div></nav><div id="post-info"><h1 class="post-title">工作杂记</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-01-29T03:33:38.000Z" title="发表于 2022-01-29 11:33:38">2022-01-29</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-08-06T12:46:02.771Z" title="更新于 2025-08-06 20:46:02">2025-08-06</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%9D%82%E8%AE%B0/">杂记</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="一、Stream流"><a href="#一、Stream流" class="headerlink" title="一、Stream流"></a>一、Stream流</h1><h2 id="1、创建"><a href="#1、创建" class="headerlink" title="1、创建"></a>1、创建</h2><blockquote>
+<p>使用Collection接口下的stream方法或parallelStream方法</p>
+</blockquote>
+<p>实现了Collection接口的可用，如List、Vector、Set</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; list = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">Stream&lt;String&gt; stream = list.stream(); <span class="comment">//获取一个顺序流</span></span><br><span class="line">Stream&lt;String&gt; parallelStream = list.parallelStream(); <span class="comment">//获取一个并行流</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>使用Arrays工具类的stream方法，将数组转成流</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Integer[] nums = <span class="keyword">new</span> <span class="title class_">Integer</span>[<span class="number">10</span>];</span><br><span class="line">Stream&lt;Integer&gt; stream = Arrays.stream(nums);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>使用Stream中的静态方法：of()、iterate()、generate()</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Stream&lt;Integer&gt; stream = Stream.of(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>);</span><br><span class="line"> </span><br><span class="line">Stream&lt;Integer&gt; stream2 = Stream.iterate(<span class="number">0</span>, (x) -&gt; x + <span class="number">2</span>).limit(<span class="number">6</span>);</span><br><span class="line">stream2.forEach(System.out::println); <span class="comment">// 0 2 4 6 8 10</span></span><br><span class="line"> </span><br><span class="line">Stream&lt;Double&gt; stream3 = Stream.generate(Math::random).limit(<span class="number">2</span>);</span><br><span class="line">stream3.forEach(System.out::println);</span><br></pre></td></tr></table></figure>
+
+<h2 id="2、操作"><a href="#2、操作" class="headerlink" title="2、操作"></a>2、操作</h2><p><img src="https://gitee.com/coder-SJW/blogimg/raw/master/img/image-20220119092422055.png" alt="image-20220119092422055"></p>
+<blockquote>
+<p>筛选、切片</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Stream&lt;Integer&gt; stream = Stream.of(<span class="number">6</span>, <span class="number">4</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">3</span>, <span class="number">9</span>, <span class="number">8</span>, <span class="number">10</span>, <span class="number">12</span>, <span class="number">14</span>, <span class="number">14</span>);</span><br><span class="line"> </span><br><span class="line">Stream&lt;Integer&gt; newStream = stream.filter(s -&gt; s &gt; <span class="number">5</span>) <span class="comment">//6 6 7 9 8 10 12 14 14 过滤</span></span><br><span class="line">        .distinct() <span class="comment">//6 7 9 8 10 12 14 去重</span></span><br><span class="line">        .skip(<span class="number">2</span>) <span class="comment">//9 8 10 12 14 跳过n个元素、配合limit实现分页</span></span><br><span class="line">        .limit(<span class="number">2</span>); <span class="comment">//9 8 获取n个元素</span></span><br><span class="line">newStream.forEach(System.out::println);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>映射</p>
+</blockquote>
+<p>未完。。。</p>
+<h1 id="二、杂记"><a href="#二、杂记" class="headerlink" title="二、杂记"></a>二、杂记</h1><h2 id="1、lombok-相关注解"><a href="#1、lombok-相关注解" class="headerlink" title="1、lombok 相关注解"></a>1、lombok 相关注解</h2><blockquote>
+<p>@Accessors</p>
+</blockquote>
+<blockquote>
+<p> @RequiredArgsConstructor</p>
+</blockquote>
+<h2 id="2、前后端传值"><a href="#2、前后端传值" class="headerlink" title="2、前后端传值"></a>2、前后端传值</h2><blockquote>
+<p> <strong>@PathVariable和@RequestParam</strong></p>
+</blockquote>
+<p>@PathVariable用于获取路径参数，@RequestParam用于获取查询参数。</p>
+<p>@RequestParam的参数:</p>
+<p>value：参数名字，即入参的请求参数名字，如username表示请求的参数区中的名字为username的参数的值将传入；</p>
+<p>required：是否必须，默认是true，表示请求中一定要有相应的参数，否则将报404错误码；</p>
+<p>defaultValue：默认值，表示如果请求中没有同名参数时的默认值</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GetMapping(&quot;/user/&#123;userId&#125;/teachers&quot;)</span></span><br><span class="line"><span class="keyword">public</span> List <span class="title function_">getTeachers</span><span class="params">(<span class="meta">@PathVariable(&quot;userId&quot;)</span> Long userId,<span class="meta">@RequestParam(value=&quot;type&quot;,required=false)</span> String type)</span>&#123;......&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>@RequestBody</strong></p>
+</blockquote>
+<p>用于读取 Request 请求(可能是 POST,PUT,DELETE,GET 请求)的 body 部分并且<strong>Content-Type 为 application&#x2F;json</strong> 格式的数据，接收到数据之后会自动将数据绑定到 Java 对象上去。</p>
+<p><strong>需要注意的是：一个请求方法只可以有一个<code>@RequestBody</code>，但是可以有多个<code>@RequestParam</code>和<code>@PathVariable</code>。如果你的方法必须要用两个 <code>@RequestBody</code>来接受数据的话，大概率是你的数据库设计或者系统设计出问题了!</strong></p>
+<h2 id="3、spring相关注解"><a href="#3、spring相关注解" class="headerlink" title="3、spring相关注解"></a>3、spring相关注解</h2><blockquote>
+<p>@Validated 校验前端传来的请求数据</p>
+</blockquote>
+<blockquote>
+<p>@Async 以便异步地调用该方法</p>
+</blockquote>
+<h2 id="4、新建模块404"><a href="#4、新建模块404" class="headerlink" title="4、新建模块404"></a>4、新建模块404</h2><p>问题：新建模块里面的接口404</p>
+<p>解决：需要把新模块依赖到入口模块的pom.xml里</p>
+<p><img src="https://gitee.com/coder-SJW/blogimg/raw/master/img/image-20220125114008941.png" alt="image-20220125114008941"></p>
+<h1 id="三、JPA"><a href="#三、JPA" class="headerlink" title="三、JPA"></a>三、JPA</h1><h2 id="1、数据基本操作"><a href="#1、数据基本操作" class="headerlink" title="1、数据基本操作"></a>1、数据基本操作</h2><p><img src="https://gitee.com/coder-SJW/blogimg/raw/master/img/image-20220119143213034.png" alt="image-20220119143213034"></p>
+<blockquote>
+<p>如图，jpa里面基本的crud接口都有，直接调用即可</p>
+</blockquote>
+<h2 id="2、自定义操作"><a href="#2、自定义操作" class="headerlink" title="2、自定义操作"></a>2、自定义操作</h2><blockquote>
+<p>jpa基本的数据库操作可以满足简单的业务，在复杂的业务下需要自定义操作</p>
+</blockquote>
+<h3 id="1-Query-）注解"><a href="#1-Query-）注解" class="headerlink" title="(1).@Query(）注解"></a>(1).@Query(）注解</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">JpaUserRepository</span> <span class="keyword">extends</span> <span class="title class_">JpaRepository</span>&lt;JpaUser, Long&gt;&#123;</span><br><span class="line">	<span class="comment">//若是增删改，则要声明事务</span></span><br><span class="line">    <span class="comment">//@Transactional 一般放在业务层，不是这里</span></span><br><span class="line">    <span class="comment">//@Modifying 通知jpa这是增删改操作</span></span><br><span class="line">    <span class="comment">//注解里的1是参数索引，在多参数时指明是哪一个</span></span><br><span class="line">    <span class="meta">@Query(&quot;FROM 类名 where 属性名=?1&quot;)</span></span><br><span class="line">    List&lt;User&gt; <span class="title function_">findUserByName</span><span class="params">(String name)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-规定方法名"><a href="#2-规定方法名" class="headerlink" title="(2).规定方法名"></a>(2).规定方法名</h3><ul>
+<li><p>主题关键字（支持查询、删除）</p>
+<p><img src="https://gitee.com/coder-SJW/blogimg/raw/master/img/image-20220119150335301.png" alt="image-20220119150335301"></p>
+</li>
+<li><p>修饰符（查询条件）</p>
+</li>
+</ul>
+<h3 id="3-Query-By-Example"><a href="#3-Query-By-Example" class="headerlink" title="(3).Query By Example"></a>(3).Query By Example</h3><blockquote>
+<p>只支持查询，可用作动态条件查询</p>
+</blockquote>
+<h2 id="3、多表关联操作"><a href="#3、多表关联操作" class="headerlink" title="3、多表关联操作"></a>3、多表关联操作</h2><blockquote>
+<p>配置关联关系</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@Entity</span></span><br><span class="line"><span class="meta">@Table(name = &quot;JPA_USER&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">JpaUser</span> &#123;</span><br><span class="line">    <span class="meta">@Id</span></span><br><span class="line">    <span class="meta">@Column(name = &quot;ID&quot;)</span></span><br><span class="line">    <span class="comment">// 生成策略</span></span><br><span class="line">    <span class="meta">@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = &quot;JPA_USER_S&quot;)</span></span><br><span class="line">    <span class="meta">@SequenceGenerator(sequenceName = &quot;JPA_USER_S&quot;, name = &quot;JPA_USER_S&quot;, allocationSize = 1)</span></span><br><span class="line">    <span class="keyword">private</span> Long id;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Column(name = &quot;NAME&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 一对一</span></span><br><span class="line"><span class="comment">     * cascade设置关联操作</span></span><br><span class="line"><span class="comment">     *      查询      默认支持</span></span><br><span class="line"><span class="comment">     *      ALL      所有操作都会执行关联操作</span></span><br><span class="line"><span class="comment">     *      PERSIST  只有插入才会执行关联操作</span></span><br><span class="line"><span class="comment">     *      MERGE    只有修改才会执行关联操作</span></span><br><span class="line"><span class="comment">     *      REMOVE   只有删除才会执行关联操作</span></span><br><span class="line"><span class="comment">     * fetch设置是否懒加载</span></span><br><span class="line"><span class="comment">     *      EAGER   立即加载（默认）</span></span><br><span class="line"><span class="comment">     *      LAZY    懒加载（用到才加载，并且要事务）</span></span><br><span class="line"><span class="comment">     * optional限制关联对象不能为null</span></span><br><span class="line"><span class="comment">     *      true    可以为null（默认）</span></span><br><span class="line"><span class="comment">     *      false   不能为null</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY,optional = false)</span></span><br><span class="line">    <span class="meta">@Column(name = &quot;xxx&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> Account account;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 一对多</span></span><br><span class="line"><span class="comment">     * cascade设置关联操作</span></span><br><span class="line"><span class="comment">     *      查询      默认支持</span></span><br><span class="line"><span class="comment">     *      ALL      所有操作都会执行关联操作</span></span><br><span class="line"><span class="comment">     *      PERSIST  只有插入才会执行关联操作</span></span><br><span class="line"><span class="comment">     *      MERGE    只有修改才会执行关联操作</span></span><br><span class="line"><span class="comment">     *      REMOVE   只有删除才会执行关联操作</span></span><br><span class="line"><span class="comment">     * fetch设置是否懒加载</span></span><br><span class="line"><span class="comment">     *      EAGER   </span></span><br><span class="line"><span class="comment">     *      LAZY    懒加载（默认,用到才加载,这样确保了性能，并且要事务）</span></span><br><span class="line"><span class="comment">     * optional限制关联对象不能为null</span></span><br><span class="line"><span class="comment">     *      true    可以为null（默认）</span></span><br><span class="line"><span class="comment">     *      false   不能为null</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@OneToMany(cascade = CascadeType.ALL)</span></span><br><span class="line">    <span class="meta">@Column(name = &quot;xxx&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> List&lt;Course&gt; course;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="（1）一对一"><a href="#（1）一对一" class="headerlink" title="（1）一对一"></a>（1）一对一</h3><blockquote>
+<p>@OneToOne(cascade&#x3D;CascadeType.ALL)</p>
+<p>括号里可设置指定的关联操作，增删改查等</p>
+</blockquote>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://tosjw.cn">coder-S</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://tosjw.cn/2022/01/29/%E5%B7%A5%E4%BD%9C%E6%9D%82%E8%AE%B0/">http://tosjw.cn/2022/01/29/%E5%B7%A5%E4%BD%9C%E6%9D%82%E8%AE%B0/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://tosjw.cn" target="_blank">coder-S</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%9D%82%E8%AE%B0/">杂记</a></div><div class="post-share"><div class="social-share" data-image="https://gitee.com/coder-SJW/blogimg/raw/master/img/image-20220119143213034.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2022/02/14/java-Streams%E6%93%8D%E4%BD%9C/" title="java Streams操作"><img class="cover" src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.lxiaoyu.com%2Fwp-content%2Fuploads%2F2021%2F06%2Ffrc-606e933cbe96a03bae726a3f30302294.png&amp;refer=http%3A%2F%2Fimg.lxiaoyu.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=jpeg?sec=1647422545&amp;t=c2155396b3d2896e9de36a2f7841eea4" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">java Streams操作</div></div><div class="info-2"><div class="info-item-1">Streams(流)java.util.Stream 表示能应用在一组元素上一次执行的操作序列。Stream 操作分为中间操作或者最终操作两种，最终操作返回一特定类型的计算结果，而中间操作返回Stream本身，这样你就可以将多个操作依次串起来。Stream 的创建需要指定一个数据源，比如 java.util.Collection 的子类，List 或者 Set， Map 不支持。Stream 的操作可以串行执行或者并行执行。 首先看看Stream是怎么用，首先创建实例代码需要用到的数据List： 123456789List&lt;String&gt; stringList = new ArrayList&lt;&gt;();stringList.add(&quot;ddd2&quot;);stringList.add(&quot;aaa2&quot;);stringList.add(&quot;bbb1&quot;);stringList.add(&quot;aaa1&quot;);stringList.add(&quot;bbb3&quot;);stringList.add(&...</div></div></div></a><a class="pagination-related" href="/2021/12/31/springboot%E5%88%86%E9%A1%B5-1/" title="springboot分页"><img class="cover" src="https://gitee.com/coder-SJW/blogimg/raw/master/img/image-20210126151605884.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">springboot分页</div></div><div class="info-2"><div class="info-item-1"> 一、分页插件（pagehelper）​		之前写项目时都是自己去写分页，头大！自己写的分页很可能要写两次查询，一次查内容，二次查条数。这种就是费力不讨好的事，所以去看了一下pagehelper分页插件（都说是最方便使用的分页插件），学完随便做个笔记。 ​		pagehelper插件主要是把PageHelper.startPage(pageNum, pageSize)放在sql查询之前。他会去处理查询内容，进行分页处理。 1、导包123456&lt;!-- pagehelper --&gt;        &lt;dependency&gt;            &lt;groupId&gt;com.github.pagehelper&lt;/groupId&gt;            &lt;artifactId&gt;pagehelper-spring-boot-starter&lt;/artifactId&gt;            &lt;version&gt;1.2.5&lt;/version&gt;        &lt;/dependency&gt;  2、分...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">coder-S</div><div class="author-info-description">......</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">13</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">10</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81Stream%E6%B5%81"><span class="toc-number">1.</span> <span class="toc-text">一、Stream流</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81%E5%88%9B%E5%BB%BA"><span class="toc-number">1.1.</span> <span class="toc-text">1、创建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E6%93%8D%E4%BD%9C"><span class="toc-number">1.2.</span> <span class="toc-text">2、操作</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%9D%82%E8%AE%B0"><span class="toc-number">2.</span> <span class="toc-text">二、杂记</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81lombok-%E7%9B%B8%E5%85%B3%E6%B3%A8%E8%A7%A3"><span class="toc-number">2.1.</span> <span class="toc-text">1、lombok 相关注解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E5%89%8D%E5%90%8E%E7%AB%AF%E4%BC%A0%E5%80%BC"><span class="toc-number">2.2.</span> <span class="toc-text">2、前后端传值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81spring%E7%9B%B8%E5%85%B3%E6%B3%A8%E8%A7%A3"><span class="toc-number">2.3.</span> <span class="toc-text">3、spring相关注解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4%E3%80%81%E6%96%B0%E5%BB%BA%E6%A8%A1%E5%9D%97404"><span class="toc-number">2.4.</span> <span class="toc-text">4、新建模块404</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81JPA"><span class="toc-number">3.</span> <span class="toc-text">三、JPA</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81%E6%95%B0%E6%8D%AE%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="toc-number">3.1.</span> <span class="toc-text">1、数据基本操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E8%87%AA%E5%AE%9A%E4%B9%89%E6%93%8D%E4%BD%9C"><span class="toc-number">3.2.</span> <span class="toc-text">2、自定义操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Query-%EF%BC%89%E6%B3%A8%E8%A7%A3"><span class="toc-number">3.2.1.</span> <span class="toc-text">(1).@Query(）注解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E8%A7%84%E5%AE%9A%E6%96%B9%E6%B3%95%E5%90%8D"><span class="toc-number">3.2.2.</span> <span class="toc-text">(2).规定方法名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Query-By-Example"><span class="toc-number">3.2.3.</span> <span class="toc-text">(3).Query By Example</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81%E5%A4%9A%E8%A1%A8%E5%85%B3%E8%81%94%E6%93%8D%E4%BD%9C"><span class="toc-number">3.3.</span> <span class="toc-text">3、多表关联操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%881%EF%BC%89%E4%B8%80%E5%AF%B9%E4%B8%80"><span class="toc-number">3.3.1.</span> <span class="toc-text">（1）一对一</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/08/07/%E7%8E%8B%E5%B0%8F%E5%87%A4/" title="王小凤"><img src="https://i.loli.net/2021/02/22/pnbmUDYPf4tvHjh.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="王小凤"/></a><div class="content"><a class="title" href="/2025/08/07/%E7%8E%8B%E5%B0%8F%E5%87%A4/" title="王小凤">王小凤</a><time datetime="2025-08-06T17:46:49.000Z" title="发表于 2025-08-07 01:46:49">2025-08-07</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/03/15/%E5%A5%BD%E6%96%87/" title="好文">好文</a><time datetime="2022-03-15T08:08:41.000Z" title="发表于 2022-03-15 16:08:41">2022-03-15</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/03/14/Spring%E5%BE%AA%E7%8E%AF%E4%BE%9D%E8%B5%96/" title="Spring循环依赖">Spring循环依赖</a><time datetime="2022-03-14T05:44:37.000Z" title="发表于 2022-03-14 13:44:37">2022-03-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/02/25/javax-validation-validation-api%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3/" title="'javax.validation:validation-api常用注解'"><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Finews.gtimg.com%2Fnewsapp_bt%2F0%2F13706307053%2F1000.jpg&amp;refer=http%3A%2F%2Finews.gtimg.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=jpeg?sec=1648370848&amp;t=0f25b6de1146b5270cd0e2d68f6a6766" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="'javax.validation:validation-api常用注解'"/></a><div class="content"><a class="title" href="/2022/02/25/javax-validation-validation-api%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3/" title="'javax.validation:validation-api常用注解'">'javax.validation:validation-api常用注解'</a><time datetime="2022-02-25T08:11:35.000Z" title="发表于 2022-02-25 16:11:35">2022-02-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/02/25/javaxvalidation%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3/" title="'javax.validation:validation-api常用注解'"><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Finews.gtimg.com%2Fnewsapp_bt%2F0%2F13706307053%2F1000.jpg&amp;refer=http%3A%2F%2Finews.gtimg.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=jpeg?sec=1648370848&amp;t=0f25b6de1146b5270cd0e2d68f6a6766" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="'javax.validation:validation-api常用注解'"/></a><div class="content"><a class="title" href="/2022/02/25/javaxvalidation%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3/" title="'javax.validation:validation-api常用注解'">'javax.validation:validation-api常用注解'</a><time datetime="2022-02-25T08:11:35.000Z" title="发表于 2022-02-25 16:11:35">2022-02-25</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 By coder-S</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.4.3</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
